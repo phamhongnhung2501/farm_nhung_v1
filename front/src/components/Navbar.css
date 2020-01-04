@@ -3,3 +3,6 @@
     overflow-y: auto;
     display: -webkit-box;
 }
+.navbar__title{
+    font-family: "Roman";
+}

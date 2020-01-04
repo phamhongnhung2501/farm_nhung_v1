@@ -1,45 +1,21 @@
 import React from "react";
-import { Card, CardBody, CardHeader, CardTitle, Row } from "reactstrap";
-
-import GoogleMapReact from "google-map-react";
+import { Card, CardBody, CardHeader, CardTitle, Row, Col } from "reactstrap";
+import { Map as LeafletMap, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
+import moment from 'moment';
+const api = require("./api/api");
 
 class Maps extends React.Component {
-    static defaultProps = {
-    center: {
-        lat: 21.031616,
-        lng: 105.803496
-    },
-    zoom: 14
-    };
-
-    getMapOptions = maps => {
-    return {
-        fullscreenControl: true,
-        mapTypeControl: true,
-        mapTypeId: maps.MapTypeId.ROADMAP,
-        scaleControl: true,
-        scrollwheel: false,
-        streetViewControl: true
-    };
-    };
-    
-    renderMarkers(map, maps) {
-        new maps.Marker(
-        {
-            position: {
-            lat: 40.712784,
-            lng: -74.005941
-            },
-            map,
-            title: "Hello World!",
-            name:'Dolores park'
-        }
-    );
+    handleSelectProject(sub_id) {
+        api.getInfoProject(sub_id, (err, result) => {
+            if (err) {
+                Notification("error", "Error", err.data === undefined ? err : err.data._error_message);
+            } else {
+                localStorage.setItem("project", JSON.stringify(result));
+                window.location.replace("/dashboard");
+            }
+        });
     }
-    onMarkerClick(marker){
-    window.location = '/post'
-    }
-    render() {
+    render() {                
         return (
             <Card className="m-3">
             <CardHeader>
@@ -49,18 +25,49 @@ class Maps extends React.Component {
               </h6>
             </CardHeader>
             <CardBody>
-                <Row style={{width: '100%', height: 600}}>
-                  <GoogleMapReact
-                      options={this.getMapOptions}
-                      bootstrapURLKeys={{
-                      key: "AIzaSyAlLS5C0xGYAouXOmwTzBNWdQHdE0rEoWE"
-                      }}
-                      defaultCenter={this.props.center}
-                      defaultZoom={this.props.zoom}
-                      onGoogleApiLoaded={({ map, maps }) => this.renderMarkers(map, maps)}
-                      
-                      label={"hello"}
-                  /> 
+                <Row >
+                    <LeafletMap
+                        center={[this.props.lat, this.props.long]}
+                        zoom={10}
+                        maxZoom={18}
+                        attributionControl={true}
+                        zoomControl={true}
+                        doubleClickZoom={true}
+                        scrollWheelZoom={true}
+                        dragging={true}
+                        animate={true}
+                        easeLinearity={0.35}
+                        style={{width: '100%',height: '400px'}}
+
+                    >   
+                        <TileLayer
+                            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                        />
+                        {this.props.data.map((data, index) => {
+                            return (
+                                <Marker position={[data.latitude, data.longitude]} onClick={this.handleSelectProject.bind(this,data.sub_id)}>
+                                <Tooltip>
+                                    <h6 className="text-center">{data.sub_id}</h6>
+                                    <Row>
+                                        <Col>
+                                            FullName: {data.manager.full_name}
+                                        </Col>
+                                        <Col>
+                                            Phone Number: {data.manager.phone_number}
+                                        </Col>
+                                        <Col>
+                                            Seed: {data.seed_name}
+                                        </Col>
+                                        <Col>
+                                            Started Plant: {moment(data.started_plant).format('DD/MM/YYYY')}
+                                        </Col>
+                                    </Row>
+                                </Tooltip>
+                                </Marker>
+                            );
+                        })}
+                        
+                    </LeafletMap>
                 </Row>
       
             </CardBody>

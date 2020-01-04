@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 
 import routes from "../routes/index";
+import ptit from "../assets/img/logo/ptit.jpg";
 import { CustomImg } from "../components/CustomTag";
 import { Settings, Users, TrendingUp, CameraOff, ToggleLeft, Cpu, Eye, Codepen } from "react-feather";
 
@@ -82,8 +83,12 @@ class Sidebar extends React.Component {
                     <div className='sidebar-content'>
                         <PerfectScrollbar>
                             <a className='sidebar-brand' href='/'>
-                                <Box className='align-middle text-primary mr-2' size={24} />{" "}
-                                <span className='align-middle'>Vườn Ươm</span>
+                                <CustomImg
+                                    src={ptit}
+                                    className="avatar img-fluid rounded-circle mr-1"
+                                    alt="ptit"
+                                />
+                                <span className='align-middle ml-2'>HVCN Bưu Chính</span>
                             </a>
 
                             <ul className='sidebar-nav'>
@@ -102,11 +107,6 @@ class Sidebar extends React.Component {
                                         name='Điều khiển thiết bị'
                                         to='/ControlStation'
                                         icon={ToggleLeft}
-                                    />
-                                    <SidebarItem
-                                        name='Theo dõi cây trồng'
-                                        to='/TrackingCamera'
-                                        icon={CameraOff}
                                     />
                                    
                                     {isAdmin ? (

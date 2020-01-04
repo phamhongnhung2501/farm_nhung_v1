@@ -14,6 +14,14 @@ const InformationSchema = new mongoose.Schema({
         required: true,
         index: true
     },
+    longitude: {
+        type: String,
+        default: "105.812153"
+    },
+    latitude: {
+        type: String,
+        default: "21.026159"
+    },
     seed:{
         type: mongoose.Schema.Types.ObjectId,
         required: true

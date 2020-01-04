@@ -54,7 +54,6 @@ class Crypto extends React.Component {
             } else {
                 let element = [];
                 let data = [...result];
-                console.log(result);
                 
                 data.map((values, index) => {
                     let value = { ...values };
@@ -129,9 +128,7 @@ class Crypto extends React.Component {
                 sub_id: sub_id,
             },
         });
-            socket.on("farm_" + sub_id, function(value) {
-                console.log(value);
-                
+            socket.on("farm_" + sub_id, function(value) {                
                     if(that.state.socket === true){
                     that.setState({ data: value, data_charts: [...that.state.data_charts, value] });
                     var length = that.state.data_charts.length;
@@ -153,13 +150,13 @@ class Crypto extends React.Component {
     }
 
     render() {
-        
+        console.log(this.state.info);
         return !this.state.isLoaded ? (
             <p className='text-center'>Loading...</p>
         ) : (
             <Container fluid className='p-0'>
                 <Row>
-                    <Col lg='8' xl='8' className='d-flex '>
+                    <Col xs="12" sm="12" lg='8'  md="12" xl='8' className='d-flex '>
                         <Statistics
                             info={this.state.info}
                             data={this.state.data}
@@ -169,7 +166,7 @@ class Crypto extends React.Component {
                             // -----------------------------
                         />
                     </Col>
-                    <Col lg='4' xl='4'>
+                    <Col xs="12" sm="12" md="12" lg='4' xl='4'>
                         <StationInformation data={this.state.info} />
                     </Col>
                 </Row>

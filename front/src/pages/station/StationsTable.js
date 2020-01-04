@@ -1,5 +1,4 @@
 import React from "react";
-import { Progress } from "react-sweet-progress";
 import "./Stations.css";
 import Notification from "../../components/Notification";
 import { Link } from "react-router-dom";
@@ -7,7 +6,6 @@ import { Link } from "react-router-dom";
 import { Card, CardTitle, Table, Badge, UncontrolledTooltip, Container } from "reactstrap";
 import { CustomImg } from "../../components/CustomTag";
 import Moment from 'react-moment';
-import 'moment-timezone';
 const api = require("./api/api");
 const none = "none";
 

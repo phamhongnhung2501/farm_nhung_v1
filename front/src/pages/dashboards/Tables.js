@@ -14,43 +14,81 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import moment from 'moment';
 import "./Tables.css";
 import 'react-day-picker/lib/style.css';
-function valueFormatter(cell, row, rowIndex) {
-  console.log(row);
+const utils = require("../../utils/utils");
 
-}
 const Temperatures = [
   {
     dataField: "time",
     text: "Time",
     sort: true,
-    classes: (cell, row, rowIndex, colIndex) => {
-      if (rowIndex % 2 === 0) return 'demo-row-even';
-      return (
-        <span>
-          <strong style={{ color: 'red' }}>$ {cell} NTD(Sales!!)</strong>
-        </span>
-      );
-    }
   },
   {
     dataField: "T1",
     text: "T1",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const { min_temp, max_temp} = utils.getStationInfo().stage;      
+      if (cell >= min_temp && cell <= max_temp ) {
+        return { color: "green" };
+      }
+      else if (cell <= min_temp) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "T2",
     text: "T2",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const { min_temp, max_temp} = utils.getStationInfo().stage;      
+      if (cell >= min_temp && cell <= max_temp ) {
+        return { color: "green" };
+      }
+      else if (cell <= min_temp) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "T3",
     text: "T3",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const { min_temp, max_temp} = utils.getStationInfo().stage;      
+      if (cell >= min_temp && cell <= max_temp ) {
+        return { color: "green" };
+      }
+      else if (cell <= min_temp) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "T4",
     text: "T4",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const { min_temp, max_temp} = utils.getStationInfo().stage;      
+      if (cell >= min_temp && cell <= max_temp ) {
+        return { color: "green" };
+      }
+      else if (cell <= min_temp) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   }
 ];
 const Humidites = [
@@ -62,22 +100,70 @@ const Humidites = [
   {
     dataField: "sensor_2.value",
     text: "H1",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_hum, max_hum} = utils.getStationInfo().stage;      
+      if (cell >= min_hum && cell <= max_hum ) {
+        return { color: "green" };
+      }
+      else if (cell <= min_hum) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "H2",
     text: "H2",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_hum, max_hum} = utils.getStationInfo().stage;      
+      if (cell >= min_hum && cell <= max_hum ) {
+        return { color: "green" };
+      }
+      else if (cell <= min_hum) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "H3",
     text: "H3",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_hum, max_hum} = utils.getStationInfo().stage;      
+      if (cell >= min_hum && cell <= max_hum ) {
+        return { color: "green" };
+      }
+      else if (cell <= min_hum) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "H4",
     text: "H4",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_hum, max_hum} = utils.getStationInfo().stage;      
+      if (cell >= min_hum && cell <= max_hum ) {
+        return { color: "green" };
+      }
+      else if (cell <= min_hum) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   }
 ];
 const SoilMoistures = [
@@ -89,49 +175,434 @@ const SoilMoistures = [
   {
     dataField: "sensor_3.value",
     text: "SM1",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "SM2",
     text: "SM2",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "SM3",
     text: "SM3",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "SM4",
     text: "SM4",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM5",
+    text: "SM5",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM6",
+    text: "SM6",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM7",
+    text: "SM8",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM8",
+    text: "SM8",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM9",
+    text: "SM9",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM10",
+    text: "SM10",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM11",
+    text: "SM11",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM12",
+    text: "SM12",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM13",
+    text: "SM13",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM14",
+    text: "SM14",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM15",
+    text: "SM15",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM16",
+    text: "SM16",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM17",
+    text: "SM17",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM17",
+    text: "SM17",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM18",
+    text: "SM18",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM19",
+    text: "SM19",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
+  },
+  {
+    dataField: "SM20",
+    text: "SM20",
+    sort: true,
+    style: function callback(cell) {      
+      const {min_soil_moisture, max_soil_moisture} = utils.getStationInfo().stage;      
+      if (cell >= min_soil_moisture && max_soil_moisture) {
+        return { color: "green" };
+      }
+      else if (cell <= min_soil_moisture) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   }
 ];
 const PHs = [
   {
     dataField: "time",
     text: "Time",
-    sort: true
+    sort: true,
   },
   {
     dataField: "PH1",
     text: "PH1",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_PH, max_PH} = utils.getStationInfo().stage;      
+      if (cell >= min_PH && max_PH) {
+        return { color: "green" };
+      }
+      else if (cell <= min_PH) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "PH2",
     text: "PH2",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_PH, max_PH} = utils.getStationInfo().stage;      
+      if (cell >= min_PH && max_PH) {
+        return { color: "green" };
+      }
+      else if (cell <= min_PH) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "PH3",
     text: "PH3",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_PH, max_PH} = utils.getStationInfo().stage;      
+      if (cell >= min_PH && max_PH) {
+        return { color: "green" };
+      }
+      else if (cell <= min_PH) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "PH4",
     text: "PH4",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_PH, max_PH} = utils.getStationInfo().stage;      
+      if (cell >= min_PH && max_PH) {
+        return { color: "green" };
+      }
+      else if (cell <= min_PH) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   }
 ];
 const Lights = [
@@ -143,22 +614,70 @@ const Lights = [
   {
     dataField: "L1",
     text: "L1",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_light, max_light} = utils.getStationInfo().stage;      
+      if (cell >= min_light && max_light) {
+        return { color: "green" };
+      }
+      else if (cell <= min_light) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "L2",
     text: "L2",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_light, max_light} = utils.getStationInfo().stage;      
+      if (cell >= min_light && max_light) {
+        return { color: "green" };
+      }
+      else if (cell <= min_light) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "L3",
     text: "L3",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_light, max_light} = utils.getStationInfo().stage;      
+      if (cell >= min_light && max_light) {
+        return { color: "green" };
+      }
+      else if (cell <= min_light) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   },
   {
     dataField: "L4",
     text: "L4",
-    sort: true
+    sort: true,
+    style: function callback(cell) {      
+      const {min_light, max_light} = utils.getStationInfo().stage;      
+      if (cell >= min_light && max_light) {
+        return { color: "green" };
+      }
+      else if (cell <= min_light) {
+        return { color: "blue" };
+      }
+      else{
+        return { color: "red" };
+      }
+    },
   }
 ];
 class MyExportCSV extends React.Component {
@@ -175,7 +694,7 @@ class MyExportCSV extends React.Component {
   render() {
     return (
       <div>
-        <button className="btn btn-secondary mt-2 float-right" onClick={this.handleClick.bind(this)}>
+        <button className="btn btn-success mt-2 float-right" onClick={this.handleClick.bind(this)}>
           Export
         </button>
       </div>
@@ -265,6 +784,8 @@ class Tables extends React.Component {
                   })}
                   noDataIndication="Table is Empty"
                   hover
+                  wrapperClasses="table-responsive"
+                  scrollY="auto"
                 />
               </CardBody>
             </div>

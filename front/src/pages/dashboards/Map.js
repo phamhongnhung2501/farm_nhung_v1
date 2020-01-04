@@ -1,64 +1,53 @@
 import React from "react";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, CardHeader, CardTitle, Row, Col } from "reactstrap";
+import { Map as LeafletMap, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
+import moment from 'moment';
+class Maps extends React.Component {
+    render() {                
+        return (
+            <LeafletMap
+                center={[this.props.lat, this.props.long]}
+                zoom={14}
+                maxZoom={18}
+                attributionControl={true}
+                zoomControl={true}
+                doubleClickZoom={true}
+                scrollWheelZoom={true}
+                dragging={true}
+                animate={true}
+                easeLinearity={0.35}
+                style={{width: '100%',height: '200px'}}
 
-import GoogleMapReact from "google-map-react";
+            >   
+                <TileLayer
+                    url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                />
+                <Marker position={[this.props.lat, this.props.long]} >
+                <Tooltip>
+                    <h6 className="text-center">{this.props.data.sub_id}</h6>
 
-class Map extends React.Component {
-  constructor(props) {
-    super(props);
-    const { data } = this.props;
-    this.state = {
-      data: data,
-      activeTab: '1'
-    };
-  }
-  getMapOptions = maps => {
-    return {
-      fullscreenControl: true,
-      mapTypeControl: true,
-      mapTypeId: maps.MapTypeId.ROADMAP,
-      scaleControl: true,
-      scrollwheel: false,
-      streetViewControl: true
-    };
-  };
-
-  renderMarkers(sub_id, lat, lng, map, maps) {
-    new maps.Marker({
-      position: {
-        lat: lat,
-        lng: lng
-      },
-      map,
-      title: sub_id
-    });
-  }
-  render() {
-    const location = this.props.data.location;
-    const sub_id = this.props.data.sub_id;
-    let lat = "asdfghj"
-    let lng = "asdadsf"
-    return (
-      <Card>
-        <CardBody>
-          <div style={{ height: 478, width: "100%" }}>
-            <GoogleMapReact
-              options={this.getMapOptions}
-              bootstrapURLKeys={{
-                key: "AIzaSyA-aWrwgr64q4b3TEZwQ0lkHI4lZK-moM4"
-              }}
-              defaultCenter={{
-                lat: lat,
-                lng: lng
-              }}
-              defaultZoom={9}
-              onGoogleApiLoaded={({ map, maps }) => this.renderMarkers(sub_id, lat, lng, map, maps)}
-            />
-          </div>
-        </CardBody>
-      </Card>
-    );
-  }
+                    <Row>
+                        <Col>
+                            FullName: {this.props.data.manager.full_name}
+                        </Col>
+                        <Col>
+                            Phone Number: {this.props.data.manager.phone_number}
+                        </Col>
+                        <Col>
+                            Seed: {this.props.data.seed_name}
+                        </Col>
+                        <Col>
+                            Started Plant: {moment(this.props.data.started_plant).format('DD/MM/YYYY')}
+                        </Col>
+                    </Row>
+                </Tooltip>
+                <Popup>
+                    Popup for any custom information.
+                </Popup>
+                </Marker>
+            </LeafletMap>
+        );
+    }
 }
 
-export default Map;
+export default Maps;

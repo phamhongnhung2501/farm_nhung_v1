@@ -269,7 +269,32 @@ class General extends React.Component {
                                     </FormGroup>
                                 </Col>
                             </Row>
-                            
+                            <Row>
+                                <Col xs="6">
+                                    <FormGroup>
+                                        <Label for="name_of_address">Tọa độ vườn ươm (latitude)</Label>
+                                        <Input
+                                            type="phone_number" name="latitude"
+                                            placeholder="latitude"
+                                            defaultValue={this.state.data.latitude}
+                                            onChange={this.handleChange}
+                                            autoComplete="off"
+                                        />
+                                    </FormGroup>
+                                </Col>
+                                <Col xs="6">
+                                    <FormGroup>
+                                        <Label for="name_of_address">Tọa độ vườn ươm (longitude)</Label>
+                                        <Input
+                                            type="phone_number" name="longitude"
+                                            placeholder="longitude"
+                                            defaultValue={this.state.data.longitude}
+                                            onChange={this.handleChange}
+                                            autoComplete="off"
+                                        />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
                             <Row>
                                 <Col xs="6">
                                     <FormGroup>

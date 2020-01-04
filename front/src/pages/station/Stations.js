@@ -1,28 +1,20 @@
 import React from "react";
-
 import {
-    CardBody,
-    Card,
-    Row,
-    Col,
+    CardBody, Card,
+    Row, Col,
     Container,
     Button,
-    ModalHeader,
-    ModalFooter,
-    Modal,
-    ModalBody,
-    FormGroup,
-    FormFeedback,
+    ModalHeader, ModalFooter, Modal, ModalBody,
+    FormGroup, FormFeedback,
     Input,
     Label,
-    DropdownItem,
     Collapse,
-    Nav,
-    Navbar,
+    Nav, Navbar,
 } from "reactstrap";
+import ReactLoading from "react-loading";
 import { Tabs, Tab } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { Link } from "react-router-dom";
 import TableProject from "./StationsTable";
@@ -47,7 +39,6 @@ class DateTimePicker extends React.Component {
 
     render() {
         const { selectedDay } = this.state;
-
         return (
             <div>
                 {selectedDay && <p>Ngày: {selectedDay.toLocaleDateString()}</p>}
@@ -77,6 +68,7 @@ class Project extends React.Component {
                 sub_id: "",
                 seed: {
                     _id: "",
+                    seed: "tomato"
                 },
                 stage_1: {},
                 stage_2: {},
@@ -120,7 +112,6 @@ class Project extends React.Component {
 
     handleSaveChange(event) {
         let data= Object.assign({}, this.state.dataConfig);
-        // console.log(data);
         api.modifyStation(data._id, data, (err, result) => {
             if (err) {
                 Notification(
@@ -129,17 +120,14 @@ class Project extends React.Component {
                     err.data === undefined ? err : err.status + " " + err.data._error_message,
                 );
             } else {
-                let temp = Object.assign({});
-                temp = {}
-                temp['_id'] = result._id;
-                temp['seed'] = result.seed;
-                let temper = Object.assign({}, this.state.temp);
-                temper['seed'] = temp
-                this.setState({temp: temper})
-                // console.log(this.state.temp);
-                
-                // --------sau khi thay doi va update ok
-                localStorage.setItem("project", JSON.stringify(result));
+                let tmp = {}
+                tmp['_id'] = result._id;
+                tmp['seed'] = result.seed;                
+                let temp = Object.assign({}, this.state.temp);  
+                temp.seed = tmp
+                this.setState({temp: temp})      
+                          
+                // // --------sau khi thay doi va update ok
                 Notification("success", "Edit Station", "Edit station is successfully");
             }
         });
@@ -150,13 +138,7 @@ class Project extends React.Component {
             modal: !prevState.modal,
         }));
     }
-    // ----------------------------------------------------------------
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.state === nextState) {
-            return false;
-        }
-        return true;
-    }
+
 
     handleChange(event) {
         let temp = Object.assign({}, this.state.temp);
@@ -193,23 +175,16 @@ class Project extends React.Component {
         let temp = Object.assign(
             {},
             this.state.temp,
-            this.state.temp.stage_1,
-            this.state.temp.stage_2,
-            this.state.temp.stage_3,
-            this.state.temp.stage_4,
-            this.state.temp.seed,
-        );
+        );        
 
         let obj = event.target.name.split(".")[0];
-        let key = event.target.name.split(".")[1];
-        console.log(key,obj);
-        
+        let key = event.target.name.split(".")[1];        
 
         if (obj === "stage_1") temp.stage_1[key] = event.target.value;
-        else if (obj === "seed") temp.seed[key] = event.target.value;
         else if (obj === "stage_2") temp.stage_2[key] = event.target.value;
         else if (obj === "stage_3") temp.stage_3[key] = event.target.value;
         else if (obj === "stage_4") temp.stage_4[key] = event.target.value;
+        else if (obj === "seed") temp.seed[key] = event.target.value;
         else temp[event.target.name] = event.target.value;
         this.setState({ temp: temp });
     }
@@ -232,9 +207,13 @@ class Project extends React.Component {
                     err.data === undefined ? err : err.data._error_message,
                 );
             } else {
+                let temp =  Object.assign({}, this.state.temp);                
+                temp.seed._id = result._id;
+                temp.seed["seed"] = result.seed;
+                result.temp = temp                
                 this.setState({
                     dataConfig: result,
-                    temp: result,
+                    temp: result
                 });
                 localStorage.setItem("project", JSON.stringify(result));
             }
@@ -276,15 +255,12 @@ class Project extends React.Component {
     }
 
     handleOnClickCreateProject() {
-        let state = Object.assign({}, this.state);
-        // console.log(state.temp);
+        let state = Object.assign({}, this.state);        
         state.showModal.create_project = true;
         state.temp.seed['_id'] = state.listSeed[0]._id;
         state.temp.sub_id = state.listGateWay[0];
-        // console.log(state.temp.seed);
         
         this.setState({temp: state.temp});
-        // console.log(this.state.temp);
     }
 
     handleCreateProject() {
@@ -295,16 +271,6 @@ class Project extends React.Component {
         if (!name) {
             return;
         }
-        let state = Object.assign({}, this.state);
-        // console.log(state.temp);
-        state.temp.seed = Object.assign({});
-        state.temp.seed['_id'] = state.listSeed[0]._id;
-        state.temp.sub_id = state.listGateWay[0];
-        
-        
-        this.setState({temp: state.temp});
-        const that = this;
-
         api.createProject(this.state.temp, (err, result) => {
             if (err) {
                 Notification(
@@ -313,11 +279,9 @@ class Project extends React.Component {
                     err.data === undefined ? err : err.data._error_message,
                 );
             } else {
-                console.log(result);
                 let list = this.state.listGateWay;
                 list.splice(list.indexOf(result.sub_id),1);
                 this.state.data.push(result);
-                
                 Notification("success");
                 this.handleClose();
             }
@@ -334,8 +298,6 @@ class Project extends React.Component {
                     err.data === undefined ? err : err.data._error_message,
                 );
             } else {
-                console.log(result);
-
                 that.setState({ data: result, isLoaderAPI1: true });
             }
         });
@@ -347,8 +309,6 @@ class Project extends React.Component {
                     err.data === undefined ? err : err.data._error_message,
                 );
             } else {
-                console.log(result);
-
                 that.setState({ listSeed: result, isLoaderAPI2: true });
             }
         });
@@ -360,18 +320,18 @@ class Project extends React.Component {
                     err.data === undefined ? err : err.data._error_message,
                 );
             } else {
-                console.log(result);
-
                 that.setState({ listGateWay: result, isLoaderAPI3: true });
             }
         });
     }
 
-    render() {
+    render() {                
         const userInfo = JSON.parse(localStorage.getItem("userInfo"));
         const isAdmin = userInfo.is_admin;
+        const {isLoaderAPI1, isLoaderAPI2, isLoaderAPI3} = this.state;
         return (
-            <React.Fragment>
+            isLoaderAPI1 === true && isLoaderAPI2 === true && isLoaderAPI3 ===true ? 
+                <React.Fragment>
                 <Modal
                     size='md'
                     isOpen={this.state.showModal.create_project}
@@ -387,7 +347,6 @@ class Project extends React.Component {
                                         name='name'
                                         placeholder='_ _ _ '
                                         value={this.state.temp.name}
-                                        // onChange={this.handleChange}
                                         onChange={this.handleChangeCreateProject}
                                         invalid={
                                             this.state.submitted && !this.state.temp.name
@@ -401,7 +360,7 @@ class Project extends React.Component {
                                 </Col>
                                 <Col xs='6' className='pb-0 !important'>
                                     <Label>Gateway</Label>
-                                    <div className='station--overflow'>
+                                    <div>
                                         <Input
                                             type='select'
                                             width='10px'
@@ -420,6 +379,38 @@ class Project extends React.Component {
                                             })}
                                         </Input>
                                     </div>
+                                </Col>
+                            </Row>
+                        </FormGroup>
+                        <FormGroup>
+                            <Row>
+                                <Col xs='6' className='pb-0 !important'>
+                                    <Label for='latitude'>Tọa độ vườn ươm (Latitude)</Label>
+                                    <Input
+                                        type='number'
+                                        name='latitude'
+                                        placeholder=''
+                                        value={this.state.temp.latitude}
+                                        onChange={this.handleChangeCreateProject}
+                                        // invalid={
+                                        //     this.state.submitted && !this.state.temp.name
+                                        //         ? true
+                                        //         : false
+                                        // }
+                                    />
+                                    {/* <FormFeedback invalid>
+                                        Tên vườn ươm là một trường bắt buộc!
+                                    </FormFeedback> */}
+                                </Col>
+                                <Col xs='6' className='pb-0 !important'>
+                                    <Label for='longitude'>Tọa độ vườn ươm (Longitude)</Label>
+                                    <Input
+                                        type='number'
+                                        name='longitude'
+                                        placeholder=''
+                                        value={this.state.temp.longitude}
+                                        onChange={this.handleChangeCreateProject}
+                                    />
                                 </Col>
                             </Row>
                         </FormGroup>
@@ -484,7 +475,7 @@ class Project extends React.Component {
                                     onChange={this.handleChange}
                                     name='seed._id'
                                     id='createConfig'>
-                                    {this.state.listSeed.map((seed, index) => {
+                                    {this.state.listSeed.map((seed, index) => {                                        
                                         return (
                                             <option className='d-inline' value={seed._id}>
                                                 {seed.seed === "tomato"
@@ -1243,10 +1234,10 @@ class Project extends React.Component {
                 {/* -----------------------------AVATAR------------------------------- */}
 
                 <Navbar className='nav__banner' light expand>
-                    <Collapse navbar>
-                        <Nav className='ml-auto' navbar>
-                            <Link to='/logout' className='text-danger'>
-                                <DropdownItem className='text-danger'>Sign out</DropdownItem>
+                    <Collapse navbar className="float-right">
+                        <Nav className='ml-auto ' navbar>
+                            <Link to='/logout' >
+                                <h3 className="text-danger m-auto"><FontAwesomeIcon icon={faSignOutAlt} width={3} height={2}/>  Sign out</h3>
                             </Link>
                         </Nav>
                     </Collapse>
@@ -1269,29 +1260,28 @@ class Project extends React.Component {
                             />
                         </Col>
 
-                        <Col sm="2" className="d-none d-sm-block"></Col>
-                        <Col md="2" className="pr-4 mb-2">
-                            <Input type="select" onChange={this.handleChangeType} value={this.state.type}  >
-                                <option value="list">List</option>
-                                <option value="map">Map</option>
-                            </Input>
-                        </Col>
+
                       
-                        <Col md='4' className="m-auto float-right d-inline">
+                        <Col md='4' className="m-auto float-left d-inline ">
                             {isAdmin ? (
                                 <Button
-                                    className='station__config float-right mt-2'
+                                    className='float-left bg-success'
                                     onClick={this.handleConfig.bind(this)}>
                                     <FontAwesomeIcon icon={faPlus} width={3} height={2}/> Cài đặt
                                     thông số cây trồng
                                 </Button>
                             ) : null}
                         </Col>
-
-                        <Col sm='2' className='m-auto d-inline'>
+                        <Col md="2" >
+                            <Input type="select" onChange={this.handleChangeType} value={this.state.type}  >
+                                <option value="list">List</option>
+                                <option value="map">Map</option>
+                            </Input>
+                        </Col>
+                        <Col  md="4" className='m-auto d-inline pr-4'>
                             {isAdmin ? (
                                 <Button
-                                    className='float-right station--button-new mt-2'
+                                    className='float-right'
                                     onClick={this.handleOnClickCreateProject.bind(this)}>
                                     <FontAwesomeIcon icon={faPlus} width={3} height={2} /> Tạo vườn
                                     ươm mới
@@ -1361,12 +1351,14 @@ class Project extends React.Component {
                             </Col>
                         :
                         <Col>
-                            <Map lat="33.829205" long="-84.377261"/>
+                            <Map lat="20.905832" long="105.708198" data={this.state.data}/>
                         </Col>
                     }
                    </Row>
                 </Container>
             </React.Fragment>
+            : 
+                <ReactLoading className="m-auto" type='bars' color='black' />
         );
     }
 }

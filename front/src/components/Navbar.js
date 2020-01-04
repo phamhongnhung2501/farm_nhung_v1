@@ -85,7 +85,9 @@ class NavbarComponent extends React.Component {
                 }
 
                 <Collapse navbar>
+                    <h1 className="text-center ml-auto mt-1 text-danger navbar__title d-none d-sm-block ">Phần mềm ứng dụng công nghệ IoT vào xây dựng trang trại trồng trọt nông nghiệp công nghệ cao</h1>
                     <Nav className="ml-auto" navbar>
+                        
                         <UncontrolledDropdown nav inNavbar className="mr-2">
                             <DropdownToggle nav>
                                 <Home id="navbar-dashboard" size={18} onClick={this.replacePage.bind(this, "/dashboard")} />
@@ -106,7 +108,7 @@ class NavbarComponent extends React.Component {
                             <DropdownToggle nav>
                                 <Bell id="navbar-dashboard" size={18} onClick={this.replacePage.bind(this, "/dashboard")} />
                                 <UncontrolledTooltip placement="bottom" target="navbar-dashboard">
-                                    Notification
+                                 Notification
                                 </UncontrolledTooltip>
                             </DropdownToggle>
                         </UncontrolledDropdown>
@@ -151,24 +153,18 @@ class NavbarComponent extends React.Component {
                                 <Link to="/profile" className="text-dark">
                                     <DropdownItem>
                                         <User size={18} className="align-middle mr-2" />
-                                        Profile
-                                    </DropdownItem>
-                                </Link>
-                                <Link to="">
-                                    <DropdownItem>
-                                        <PieChart size={18} className="align-middle mr-2" />
-                                        Analytics
+                                        Thông tin quản lý
                                     </DropdownItem>
                                 </Link>
                                 <DropdownItem divider />
-                                <Link to="">
-                                    <DropdownItem>Settings & Privacy</DropdownItem>
+                                <Link to="#">
+                                    <DropdownItem>Cài đặt hệ thống</DropdownItem>
                                 </Link>
-                                <Link to="">
-                                    <DropdownItem>Help</DropdownItem>
+                                <Link to="#">
+                                    <DropdownItem>Trợ giúp</DropdownItem>
                                 </Link>
                                 <Link to="/logout" className="text-dark">
-                                    <DropdownItem>Sign out</DropdownItem>
+                                    <DropdownItem>Đăng xuất</DropdownItem>
                                 </Link>
                             </DropdownMenu>
                         </UncontrolledDropdown>

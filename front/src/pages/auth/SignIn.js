@@ -65,12 +65,12 @@ class SignIn extends React.Component {
         const { email, password, submitted, loading, error } = this.state;
         return (
             <React.Fragment>
-                <Container className="signin-container-width">
+                <Container className="">
                     {error &&
-                        <Alert color="danger" className="p-2" >{error}</Alert>
+                        <Alert color="danger" className="w-75 m-auto p-2">{error}</Alert>
                     }
-                    <div class="d-flex justify-content-center container">
-                        <Card className="col-md-7 p-2 !important signin-card">
+                    <div class="d-flex justify-content-center container mt-2">
+                        <Card className="col-md-7 p-2 !important signin-card rounded-lg">
                             <CardBody className="px-0 pt-0 pb-0">
                                 <div className="m-sm-4">
                                     <div className="text-center">

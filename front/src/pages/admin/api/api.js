@@ -84,8 +84,6 @@ function getIdRole(callback) {
         });
 }
 
-
-
 function editIsAdmin(dataInput, callback) {
     axios({
         url: config_api.admin + "/" + dataInput.idMemberChange,
@@ -114,7 +112,6 @@ function editIsAdmin(dataInput, callback) {
         });
 }
 
-
 function deleteMembership(dataInput, callback) {
     console.log(config_api.admin + "/" + dataInput)
     axios({
@@ -142,7 +139,6 @@ function deleteMembership(dataInput, callback) {
 }
 
 function editRole(dataInput, id, callback) {
-    console.log(dataInput, id);
 
     axios({
         url: config_api.project + "/add_substation",
@@ -170,7 +166,6 @@ function editRole(dataInput, id, callback) {
         });
 }
 function deleteStation(id, callback) {
-    console.log(id);
 
     axios({
         url: config_api.project + "/" + id,
@@ -196,8 +191,6 @@ function deleteStation(id, callback) {
 }
 
 function modifyStation(id, data, callback) {
-    console.log(data);
-    
     axios({
         url: config_api.project + "/" + id,
         method: 'PATCH',

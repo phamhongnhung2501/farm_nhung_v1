@@ -33,6 +33,7 @@ async function newSeed(req, res){
 async function editSeed(req, res){
     try{
         let change_element = req.body;
+        console.log(change_element);
         for(let i=1;i<5;i++) {
             checkInput(change_element, i)
         }

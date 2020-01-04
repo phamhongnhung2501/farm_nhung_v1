@@ -107,7 +107,7 @@ class SignUp extends React.Component {
                     {error &&
                         <Alert className="p-2" color="danger" isOpen={success ? false : true}>{error}</Alert>
                     }
-                    <Card className="signup-card">
+                    <Card className="signup-card rounded-lg">
                         <h1 className="text-center signup-text-register mt-3">Đăng ký</h1>
                         <CardBody className="signup-card-body">
                             <Form onSubmit={this.handleSubmit}>

@@ -41,6 +41,7 @@ async function getSubById(req, res) {
 async function newSubstation(req, res) {
     try{
         let data = req.body;
+        console.log(data);
         if(!req.user.is_admin) return response.forbidden(res,"Permission Denied!!!");//1
         if(!gateway.includes(data.sub_id)) return response.badData(res, "Sensor doesn't exist!!!");//2
         let check_sub = await Information.findOne({sub_id: data.sub_id});
@@ -51,9 +52,11 @@ async function newSubstation(req, res) {
         let new_farm = {
             name: data.name,
             sub_id: data.sub_id,
-            started_plant: data.started_plant,
+            started_plant: data.started_plant ? data.started_plant : Date.now(),
             owner_id: req.user._id,
-            seed: data.seed
+            seed: data.seed,
+            latitude: data.latitude,
+            longitude: data.longitude
         };
         let farm = await Information.create(new_farm);
         await User.updateMany({is_admin:true},{ $push: {"farms": farm.sub_id}});
@@ -73,7 +76,8 @@ async function editSub(req, res){
         let data_seed={
             name: change_element.name ? change_element.name : old_farm.name,
             started_plant: change_element.started_plant ? change_element.started_plant : old_farm.started_plant,
-            address: change_element.address ? change_element.address : old_farm.address
+            longitude: change_element.longitude ? change_element.longitude : old_farm.longitude,
+            latitude: change_element.latitude ? change_element.latitude : old_farm.latitude
         };
         let farm = await Information.findOneAndUpdate({sub_id:req.params.sub_id}, data_seed, {new:true});
         let full_info = await serializer.convertOutput(farm);

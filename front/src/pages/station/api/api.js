@@ -4,6 +4,7 @@ const axios = require('axios');
 
 function createProject(data, callback) {
     console.log(data);
+    
     axios({
         url: config_api.project,
         method: 'POST',
@@ -14,9 +15,10 @@ function createProject(data, callback) {
         data: {
             name: data.name,
             sub_id: data.sub_id,
-            started_plant: data.started_plant,
-            // owner_id: data.owner_id,
-            seed: data.seed 
+            started_plant: Date.parse(data.started_plant),
+            seed: data.seed,
+            latitude: data.latitude,
+            longitude: data.longitude
         }
     })
         .then(result => {

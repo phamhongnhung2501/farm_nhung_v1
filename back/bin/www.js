@@ -55,8 +55,8 @@ io.on('connection', function (socket) {
   let sub_id = socket.handshake.query.sub_id;
   setInterval(async function(){
     let data = fakeData(sub_id);
-    let topic = "farm_G07";
-    // let topic = "farm_"+data.sub_id;
+    // let topic = "farm_G07";
+    let topic = "farm_"+sub_id;
     // await service.saveData(data);
     socket.emit(topic, data);
     // console.log(data);

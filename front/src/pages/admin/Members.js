@@ -433,7 +433,7 @@ class Members extends React.Component {
 							<Table className="mb-0">
 								<thead>
 									<tr>
-										<th className="d-none d-sm-block">Avatar</th>
+										<th className="">Avatar</th>
 										<th>Name</th>
 										<th>Phone number</th>
 										<th>Email</th>

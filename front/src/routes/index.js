@@ -22,7 +22,6 @@ import TrackSoilMoisture from "../pages/TrackSoilMoisture/TrackSoilMoisture";
 import Admin from "../pages/admin/Admin";
 import ControlStation from "../pages/ControlStation/ControlStation";
 import Config from "../pages/Config/Config";
-import TrackingCamera from "../pages/TrackingCamera/TrackingCamera";
 
 
 // import Root from "../pages/root/root";
@@ -52,11 +51,6 @@ const dashboardWithoutSidebarRoutes = {
             path: "/ControlStation",
             name: "ControlStation",
             component: ControlStation
-        },
-        {
-            path: "/TrackingCamera",
-            name: "TrackingCamera",
-            component: TrackingCamera
         },
         {
             path: "/Config",

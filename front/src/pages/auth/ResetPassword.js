@@ -63,12 +63,12 @@ class ResetPassword extends React.Component {
 			<React.Fragment>
 				{isSuccess &&
 					<Alert  color="primary"  className="p-2" >
-						<div>Check your email to complete the password reset</div>
+						<div>Kiểm tra email của bạn để lấy lại mật khẩu</div>
 					</Alert>
 				}
 				{isError &&
 					<Alert  color="danger" className="p-2" >
-						<div>Email doesn't exist!</div>
+						<div>Email không tồn tại!</div>
 					</Alert>
 				}
 				<div class=" justify-content-center container">

@@ -182,7 +182,7 @@ class RowMember extends React.Component {
 								style={{ cursor: 'pointer', color: "red" }}
 							/>
 						</td>
-						<td className="text-primary">{moment(this.props.infoMember.last_login, "YYYY-MM-DD").fromNow()}</td>
+						<td className="text-primary">{moment(this.props.infoMember.last_login).fromNow()}</td>
 					</tr>
 				</React.Fragment>
 			</React.Fragment>

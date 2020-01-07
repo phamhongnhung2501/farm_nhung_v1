@@ -204,6 +204,86 @@ class Chart extends React.Component {
       let y = SM4;
       return {x,y} 
     })
+    const SM5 = data.map(({time, SM5 },key)=>{
+      let x = time;
+      let y = SM5;
+      return {x,y} 
+    })
+    const SM6= data.map(({time, SM6 },key)=>{
+      let x = time;
+      let y = SM6;
+      return {x,y} 
+    })
+    const SM7 = data.map(({time, SM7 },key)=>{
+      let x = time;
+      let y = SM7;
+      return {x,y} 
+    })
+    const SM8 = data.map(({time, SM8 },key)=>{
+      let x = time;
+      let y = SM8;
+      return {x,y} 
+    })
+    const SM9 = data.map(({time, SM9 },key)=>{
+      let x = time;
+      let y = SM9;
+      return {x,y} 
+    })
+    const SM10= data.map(({time, SM10 },key)=>{
+      let x = time;
+      let y = SM10;
+      return {x,y} 
+    })
+    const SM11 = data.map(({time, SM11 },key)=>{
+      let x = time;
+      let y = SM11;
+      return {x,y} 
+    })
+    const SM12 = data.map(({time, SM12 },key)=>{
+      let x = time;
+      let y = SM12;
+      return {x,y} 
+    })
+    const SM13 = data.map(({time, SM13 },key)=>{
+      let x = time;
+      let y = SM13;
+      return {x,y} 
+    })
+    const SM14= data.map(({time, SM14 },key)=>{
+      let x = time;
+      let y = SM14;
+      return {x,y} 
+    })
+    const SM15 = data.map(({time, SM15 },key)=>{
+      let x = time;
+      let y = SM15;
+      return {x,y} 
+    })
+    const SM16 = data.map(({time, SM16 },key)=>{
+      let x = time;
+      let y = SM16;
+      return {x,y} 
+    })
+    const SM17 = data.map(({time, SM17 },key)=>{
+      let x = time;
+      let y = SM17;
+      return {x,y} 
+    })
+    const SM18= data.map(({time, SM18 },key)=>{
+      let x = time;
+      let y = SM18;
+      return {x,y} 
+    })
+    const SM19 = data.map(({time, SM19 },key)=>{
+      let x = time;
+      let y = SM19;
+      return {x,y} 
+    })
+    const SM20 = data.map(({time, SM20 },key)=>{
+      let x = time;
+      let y = SM20;
+      return {x,y} 
+    })
     const PH1 = data.map(({time,PH1 },key)=>{
       let x = time;
       let y = PH1;
@@ -349,6 +429,70 @@ class Chart extends React.Component {
                   {
                     name: "SM4",
                     data: SM4
+                  },
+                  {
+                    name: "SM5",
+                    data: SM5
+                  },
+                  {
+                    name: "SM6",
+                    data: SM6
+                  },
+                  {
+                    name: "SM7",
+                    data: SM7
+                  },
+                  {
+                    name: "SM8",
+                    data: SM8
+                  },
+                  {
+                    name: "SM9",
+                    data: SM9
+                  },
+                  {
+                    name: "SM10",
+                    data: SM10
+                  },
+                  {
+                    name: "SM11",
+                    data: SM11
+                  },
+                  {
+                    name: "SM12",
+                    data: SM12
+                  },
+                  {
+                    name: "SM13",
+                    data: SM13
+                  },
+                  {
+                    name: "SM14",
+                    data: SM14
+                  },
+                  {
+                    name: "SM15",
+                    data: SM15
+                  },
+                  {
+                    name: "SM16",
+                    data: SM16
+                  },
+                  {
+                    name: "SM17",
+                    data: SM17
+                  },
+                  {
+                    name: "SM18",
+                    data: SM18
+                  },
+                  {
+                    name: "SM19",
+                    data: SM19
+                  },
+                  {
+                    name: "SM20",
+                    data: SM20
                   }
                 ]
                 :

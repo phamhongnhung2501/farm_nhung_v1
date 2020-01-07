@@ -80,7 +80,8 @@ class Statistics extends React.Component {
                   <img src="https://image.flaticon.com/icons/svg/167/167745.svg" width={50} height={50} />
                 </div>
                 <h4 className="card-title mb-0 font-weight-bolder text__head--item">Ánh sáng</h4>
-                <div className="badge badge-warning ml-4">%</div>
+                <div className="badge badge-primary text-center ml-2">Lux</div>
+                {/* <div className="badge badge-warning ml-4">%</div> */}
               </CardHeader>
               <CardBody className=" border border-primary">
                 <Media>
@@ -115,13 +116,13 @@ class Statistics extends React.Component {
                 <div className="float-right">
                   <img src="https://image.flaticon.com/icons/svg/1150/1150447.svg" width={50} height={50} />
                 </div>
-                <h4 className="card-title mb-0 font-weight-bolder text__head--item">PH </h4>
+                <h4 className="card-title mb-0 font-weight-bolder text__head--item">PH</h4>
               </CardHeader>
               <CardBody className="border border-primary" >
                 <Media>
                   <div className="d-inline-block mr-1">
                     <h4 className="font-weight-light ">
-                      <Slack className="feather-md mb-1 mr-1" color={this.props.data.PH1 === undefined ? "#7c7c80" : "green"} />PH1
+                      <Slack className="feather-md mb-1 mr-1" color={this.props.data.PH1 === undefined ? "#7c7c80" : "green"} />Pin 1
                     </h4>
                   </div>
                   <Media body>
@@ -131,7 +132,7 @@ class Statistics extends React.Component {
                 <Media>
                   <Media className="d-inline-block mr-1">
                     <h4 className="font-weight-light ">
-                      <Slack className="feather-md mb-1 mr-1" color={this.props.data.PH2 === undefined ? "#7c7c80" : "green"}  />PH2
+                      <Slack className="feather-md mb-1 mr-1" color={this.props.data.PH2 === undefined ? "#7c7c80" : "green"}  />Pin 2
                     </h4>
                   </Media>
                   <Media body>

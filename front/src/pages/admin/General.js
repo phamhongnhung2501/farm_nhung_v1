@@ -109,15 +109,11 @@ class General extends React.Component {
             data.stage_3[key] = event.target.value;
         else if(obj === 'stage_4')
             data.stage_4[key] = event.target.value;
+        else if(obj === 'full_name')
+            data.manager['full_name'] =  event.target.value;
         else
             data[event.target.name] = event.target.value;
         this.setState({ data: data });
-    }
-
-    handleChangeType(type) {
-        this.setState({
-            changeIsPrivate: type === "private"
-        });
     }
 
     handleSaveChange() {
@@ -157,6 +153,7 @@ class General extends React.Component {
     componentDidMount() {
         const that = this;
         api.getInfoProject(utils.getStationInfo().sub_id, (err, result) => {
+            console.log(result);
             if (err) {
                 Notification("error", "Error", err.data === undefined ? err : err.data._error_message)
             } else {
@@ -201,7 +198,8 @@ class General extends React.Component {
                                     <FormGroup>
                                         <Label for="name_of_manager">Quản lý</Label>
                                         <Input
-                                            type="text" name="manager"
+                                            disabled
+                                            type="text" name="full_name"
                                             placeholder="Name of manager"
                                             defaultValue={this.state.data.manager.full_name}
                                             onChange={this.handleChange}
@@ -212,19 +210,11 @@ class General extends React.Component {
                             </Row>
                             <Row>
                                 <Col xs="6">
-                                    <Label>Giống cây trồng</Label>
+                                    <Label>Gmail</Label>
                                     <Input
                                         disabled
-                                        type="text" name="seed_name"
-                                        placeholder="Giống cây trồng"
-                                        defaultValue={
-                                            this.state.data.seed_name === "tomato" ? "Cà chua" : ""||
-                                            this.state.data.seed_name === "cucumber" ? "Dưa chuột" : ""||
-                                            this.state.data.seed_name === "pakchoi" ? "Cải ngọt" : ""||
-                                            this.state.data.seed_name === "brassica" ? "Cải chíp" : ""||
-                                            this.state.data.seed_name === "cabbage" ? "Bắp cải" : ""
-                                        }
-                                        onChange={this.handleChange}
+                                        type="text" name="email"
+                                        placeholder={this.state.data.manager.email}
                                         autoComplete="off"
                                     />
                                 </Col>
@@ -236,33 +226,6 @@ class General extends React.Component {
                                             type="text" name="phone_number"
                                             placeholder="Phone number"
                                             defaultValue={this.state.data.manager.phone_number}
-                                            onChange={this.handleChange}
-                                            autoComplete="off"
-                                        />
-                                    </FormGroup>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs="6">
-                                    <FormGroup>
-                                        <Label for="name_of_address">Địa chỉ</Label>
-                                        <Input
-                                            type="text" name="address"
-                                            placeholder="Địa chỉ"
-                                            defaultValue={this.state.data.address}
-                                            onChange={this.handleChange}
-                                            autoComplete="off"
-                                        />
-                                    </FormGroup>
-                                </Col>
-                                <Col xs="6">
-                                    <FormGroup>
-                                        <Label for="name_of_address">Gateway</Label>
-                                        <Input
-                                            disabled
-                                            type="text" name="sub_id"
-                                            placeholder="sub_id"
-                                            defaultValue={this.state.data.sub_id}
                                             onChange={this.handleChange}
                                             autoComplete="off"
                                         />
@@ -297,6 +260,38 @@ class General extends React.Component {
                             </Row>
                             <Row>
                                 <Col xs="6">
+                                    <Label>Giống cây trồng</Label>
+                                    <Input
+                                        disabled
+                                        type="text" name="seed_name"
+                                        placeholder="Giống cây trồng"
+                                        defaultValue={
+                                            this.state.data.seed_name === "tomato" ? "Cà chua" : ""||
+                                            this.state.data.seed_name === "cucumber" ? "Dưa chuột" : ""||
+                                            this.state.data.seed_name === "pakchoi" ? "Cải ngọt" : ""||
+                                            this.state.data.seed_name === "brassica" ? "Cải chíp" : ""||
+                                            this.state.data.seed_name === "cabbage" ? "Bắp cải" : ""
+                                        }
+                                        onChange={this.handleChange}
+                                        autoComplete="off"
+                                    />
+                                </Col>
+                                <Col xs="6">
+                                    <FormGroup>
+                                        <Label for="name_of_address">Gateway</Label>
+                                        <Input
+                                            disabled
+                                            type="text" name="sub_id"
+                                            placeholder="sub_id"
+                                            defaultValue={this.state.data.sub_id}
+                                            onChange={this.handleChange}
+                                            autoComplete="off"
+                                        />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs="6">
                                     <FormGroup>
                                         <DateTimePicker 
                                             className="ml-1"
@@ -305,6 +300,7 @@ class General extends React.Component {
                                         />
                                     </FormGroup>
                                 </Col>
+                               
                             </Row>
                             <Row>
                             <FormGroup>

@@ -20,12 +20,12 @@ class ProfActivities extends Component {
       max: 10,
       page: 2,
       status_load: true,
-      receiveTimeline: true,
+      receiveTimeline: false,
       receiveProject: false,
       receiveWatched: false,
-      receiveContact: false,
+      receiveContact: true,
 
-      activeTab: 'timeline',
+      activeTab: 'contact',
     }
   }
 

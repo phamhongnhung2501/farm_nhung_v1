@@ -10,10 +10,10 @@ function farm(sub_id) {
     let H2 = Math.floor(Math.random() * (90 - 60) + 60);
     let H3 = Math.floor(Math.random() * (90 - 60) + 60);
     let H4 = Math.floor(Math.random() * (90 - 60) + 60);
-    let L1 = Math.floor(Math.random() * (1000 - 800) + 800);
-    let L2 = Math.floor(Math.random() * (1000 - 800) + 800);
-    let L3 = Math.floor(Math.random() * (1000 - 800) + 800);
-    let L4 = Math.floor(Math.random() * (1000 - 800) + 800);
+    let L1 = Math.floor(Math.random() * (30 - 10) + 10);
+    let L2 = Math.floor(Math.random() * (30 - 10) + 10);
+    let L3 = Math.floor(Math.random() * (30 - 10) + 10);
+    let L4 = Math.floor(Math.random() * (30 - 10) + 10);
     let PH1 = Math.floor(Math.random() * (12 - 8) + 8);
     let PH2 = Math.floor(Math.random() * (12 - 8) + 8);
     let PH3 = Math.floor(Math.random() * (12 - 8) + 8);
@@ -43,13 +43,13 @@ function farm(sub_id) {
     let SM23 = Math.floor(Math.random() * 100);
     let SM24 = Math.floor(Math.random() * 100);
     let SM25 = Math.floor(Math.random() * 100);
-    return{
+    return {
         sub_id: sub_id,
         sensor_1: {
             id: 123456,
             RF_signal: "Tốt",
         },
-        sensor_2:{
+        sensor_2: {
             RF_signal: "Tốt",
             id: 12566,
             name: "Humidity",
@@ -57,7 +57,7 @@ function farm(sub_id) {
             value: H1,
             battery: 98
         },
-        sensor_3:{
+        sensor_3: {
             RF_signal: "Tốt",
             id: 23456,
             name: "Soil moisture",
@@ -76,37 +76,49 @@ function farm(sub_id) {
         SM21: SM21, SM22: SM22, SM23: SM23, SM24: SM24, SM25: SM25,
         time: Date.now()
     }
-    // return{
-    //     sub_id: sub_id,
-    //     sensor_1: {
-    //         id: 123456,
-    //         RF_signal: "Tốt",
-    //     },
-    //     sensor_2:{
-    //         RF_signal: "Tốt",
-    //         id: 12566,
-    //         name: "Humidity",
-    //         EOC: 34,
-    //         value: 45,
-    //         battery: 98
-    //     },
-    //     sensor_3:{
-    //         RF_signal: "Tốt",
-    //         id: 23456,
-    //         name: "Soil moisture",
-    //         EOC: 45,
-    //         value: 60,
-    //         battery: 90
-    //     },
-    //     time: Date.now()
-    // }
+}
+
+function farm_G04(sub_id) {
+    // let id = gateway[Math.floor(Math.random() * gateway.length)];
+    let T1 = Math.floor(Math.random() * (40 - 20) + 20);
+    let H1 = Math.floor(Math.random() * (90 - 60) + 60);
+    let L1 = Math.floor(Math.random() * (30 - 10) + 10);
+    let PH1 = Math.floor(Math.random() * (12 - 8) + 8);
+    let SM1 = Math.floor(Math.random() * 100);
+    return {
+        sub_id: sub_id,
+        sensor_1: {
+            id: 123456,
+            RF_signal: "Tốt",
+        },
+        sensor_2: {
+            RF_signal: "Tốt",
+            id: 12566,
+            name: "Humidity",
+            EOC: 34,
+            value: H1,
+            battery: 98
+        },
+        sensor_3: {
+            RF_signal: "Tốt",
+            id: 23456,
+            name: "Soil moisture",
+            EOC: 45,
+            value: SM1,
+            battery: 90
+        },
+        T1: T1,
+        L1: L1,
+        H1: H1,
+        PH1: PH1,
+        SM1: SM1,
+        time: Date.now()
+    }
 }
 
 
 
-
-
-
 module.exports ={
-  farm
+    farm,
+    farm_G04
 };

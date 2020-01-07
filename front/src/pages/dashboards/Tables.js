@@ -32,7 +32,7 @@ const Temperatures = [
         return { color: "green" };
       }
       else if (cell <= min_temp) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -49,7 +49,7 @@ const Temperatures = [
         return { color: "green" };
       }
       else if (cell <= min_temp) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -66,7 +66,7 @@ const Temperatures = [
         return { color: "green" };
       }
       else if (cell <= min_temp) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -83,7 +83,7 @@ const Temperatures = [
         return { color: "green" };
       }
       else if (cell <= min_temp) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -107,7 +107,7 @@ const Humidites = [
         return { color: "green" };
       }
       else if (cell <= min_hum) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -124,7 +124,7 @@ const Humidites = [
         return { color: "green" };
       }
       else if (cell <= min_hum) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -141,7 +141,7 @@ const Humidites = [
         return { color: "green" };
       }
       else if (cell <= min_hum) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -158,7 +158,7 @@ const Humidites = [
         return { color: "green" };
       }
       else if (cell <= min_hum) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -182,7 +182,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -199,7 +199,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -216,7 +216,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -233,7 +233,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -250,7 +250,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -267,7 +267,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -284,7 +284,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -301,7 +301,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -318,7 +318,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -335,7 +335,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -352,7 +352,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -369,7 +369,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -386,7 +386,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -403,7 +403,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -420,7 +420,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -437,7 +437,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -454,7 +454,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -471,7 +471,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -488,7 +488,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -505,7 +505,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -522,7 +522,7 @@ const SoilMoistures = [
         return { color: "green" };
       }
       else if (cell <= min_soil_moisture) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -546,7 +546,7 @@ const PHs = [
         return { color: "green" };
       }
       else if (cell <= min_PH) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -563,7 +563,7 @@ const PHs = [
         return { color: "green" };
       }
       else if (cell <= min_PH) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -580,7 +580,7 @@ const PHs = [
         return { color: "green" };
       }
       else if (cell <= min_PH) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -597,7 +597,7 @@ const PHs = [
         return { color: "green" };
       }
       else if (cell <= min_PH) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -621,7 +621,7 @@ const Lights = [
         return { color: "green" };
       }
       else if (cell <= min_light) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -638,7 +638,7 @@ const Lights = [
         return { color: "green" };
       }
       else if (cell <= min_light) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -655,7 +655,7 @@ const Lights = [
         return { color: "green" };
       }
       else if (cell <= min_light) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };
@@ -672,7 +672,7 @@ const Lights = [
         return { color: "green" };
       }
       else if (cell <= min_light) {
-        return { color: "blue" };
+        return { color: "orange" };
       }
       else{
         return { color: "red" };

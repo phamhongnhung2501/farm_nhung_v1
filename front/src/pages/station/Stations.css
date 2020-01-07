@@ -40,7 +40,6 @@
     color: orangered;
     
 }
-
 .table-project__card__table__col-id{
     width: 3%;
 }
@@ -175,13 +174,6 @@ and (max-device-width: 812px){
         height: 4rem !important;
         margin-left: 1rem !important;
         padding-left: 1rem !important;
-    }
-    /* .station__config-digital{
-        margin: 0rem !important;
-        padding: 0rem !important;
-    } */
-    .station__project{
-        padding-right: 0rem !important;
     }
     .station__title{
         font-size: 1.5rem !important;

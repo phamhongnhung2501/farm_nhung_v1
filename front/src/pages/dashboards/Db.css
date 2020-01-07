@@ -49,6 +49,9 @@ background-color: #dee2e6 ;
     height: 2rem;
     border-radius: 50%;
 }
+.infomation__warning-low{
+    background-color: orangered;
+}
 @media only screen and (min-device-width: 350px) 
 and (max-device-width: 600px){
   .Table--lable--text{

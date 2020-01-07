@@ -171,36 +171,7 @@ class Controlstation extends Component {
 
                                         <Row className='mt-5'>
                                             <Col xs='12' md='6' sm='12'>
-                                                <h4 className='text-center'>Đèn 1</h4>
-                                                <CustomImg
-                                                    key={utils.randomString()}
-                                                    src={RL1 === "01" ? LightOn : LightOff}
-                                                    alt='button'
-                                                    className='img-fluid'
-                                                />
-                                                <div className='d-flex justify-content-center mt-3 d-inline '>
-                                                    <Button
-                                                        className='mr-3'
-                                                        color='danger'
-                                                        size='md'
-                                                        onClick={() => {
-                                                            this.send(GW_name, "00");
-                                                        }}>
-                                                        Tắt đèn
-                                                    </Button>
-                                                    <Button
-                                                        className=''
-                                                        color='success'
-                                                        size='md'
-                                                        onClick={() => {
-                                                            this.send(GW_name, "01");
-                                                        }}>
-                                                        Bật đèn
-                                                    </Button>
-                                                </div>
-                                            </Col>
-                                            <Col xs='12' md='6' sm='12'>
-                                                <h4 className='text-center'>Đèn 2</h4>
+                                                <h4 className='text-center'>Máy bơm</h4>
                                                 <CustomImg
                                                     key={utils.randomString()}
                                                     src={RL2 === "11" ? FanOn : FantOff}
@@ -213,7 +184,7 @@ class Controlstation extends Component {
                                                         color='danger'
                                                         size='md'
                                                         onClick={() => {
-                                                            this.send(GW_name, "10");
+                                                            this.send(location, "20");
                                                         }}>
                                                         Tắt máy
                                                     </Button>
@@ -222,9 +193,38 @@ class Controlstation extends Component {
                                                         color='success'
                                                         size='md'
                                                         onClick={() => {
-                                                            this.send(GW_name, "11");
+                                                            this.send(location, "21");
                                                         }}>
                                                         Bật máy
+                                                    </Button>
+                                                </div>
+                                            </Col>
+                                            <Col xs='12' md='6' sm='12'>
+                                                <h4 className='text-center'>Đèn 2</h4>
+                                                <CustomImg
+                                                    key={utils.randomString()}
+                                                    src={RL1 === "01" ? LightOn : LightOff}
+                                                    alt='button'
+                                                    className='img-fluid'
+                                                />
+                                                <div className='d-flex justify-content-center mt-3 d-inline '>
+                                                    <Button
+                                                        className='mr-3'
+                                                        color='danger'
+                                                        size='md'
+                                                        onClick={() => {
+                                                            this.send(location, "10");
+                                                        }}>
+                                                        Tắt đèn
+                                                    </Button>
+                                                    <Button
+                                                        className=''
+                                                        color='success'
+                                                        size='md'
+                                                        onClick={() => {
+                                                            this.send(location, "11");
+                                                        }}>
+                                                        Bật đèn
                                                     </Button>
                                                 </div>
                                             </Col>

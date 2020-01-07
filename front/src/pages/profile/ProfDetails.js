@@ -93,7 +93,7 @@ class ProfDetails extends Component {
                     this.setState(prevState => ({
                         data: {
                             ...prevState.data,
-                            photo: result.photo
+                            photo: result.photo,
                         }
                     }))
                     var local = JSON.parse(localStorage.getItem('userInfo'))
@@ -193,6 +193,7 @@ class ProfDetails extends Component {
                         <FormGroup>
                             <Label for="gender"><h5><dt>Giới tính</dt></h5></Label>
                             <Input type="select" id="gender" name="changeGender" defaultValue={this.state.gender} onChange={this.handleChangeValue}>
+                                <option value="">Chọn giới tính</option>
                                 <option>Nam</option>
                                 <option>Nữ</option>
                                 {/* <option>Không biết</option> */}

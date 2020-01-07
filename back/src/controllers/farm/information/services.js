@@ -70,6 +70,7 @@ async function newSubstation(req, res) {
 /** Edit information of farm*/
 async function editSub(req, res){
     let change_element = req.body;
+    console.log(change_element);
     try {
         if(!req.user.is_admin) return response.forbidden(res,"Permission Denied!!!");
         let old_farm = await Information.findOne({sub_id: req.params.sub_id});
@@ -79,6 +80,7 @@ async function editSub(req, res){
             longitude: change_element.longitude ? change_element.longitude : old_farm.longitude,
             latitude: change_element.latitude ? change_element.latitude : old_farm.latitude
         };
+        console.log(data_seed)
         let farm = await Information.findOneAndUpdate({sub_id:req.params.sub_id}, data_seed, {new:true});
         let full_info = await serializer.convertOutput(farm);
         response.ok(res, full_info)

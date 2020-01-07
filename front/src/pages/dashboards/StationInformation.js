@@ -46,7 +46,7 @@ class StationInformation extends React.Component {
             <React.Fragment>
                 <Tabs defaultActiveKey='info'>
                     <Tab eventKey='info' title='Thông tin vườn ươm'>
-                        <Card className='flex-fill w-100'>
+                        <Card className='flex-fill w-100' style={{ height: 484, width: "100%" }}>
                             <CardBody className='my-0'>
                                 <Col className='mb-3'>
                                     <Map lat="20.905832" long="105.708198" data={data}/>
@@ -80,12 +80,10 @@ class StationInformation extends React.Component {
                                             </Moment>
                                         </Link>
                                     </Col>
-                                    <Col className='mb-3'>
+                                    {/* <Col className='mb-3'>
                                         <MapPin width={20} height={20} className='mr-1' />
                                         Địa chỉ: <Link to='#'>{data.address}</Link>
-                                    </Col>
-                                </Row>
-                                <Row>
+                                    </Col> */}
                                     <Col className='mb-3'>
                                         <User width={20} height={20} className='mr-1' />
                                         Người quản lí: <Link to='#'>{data.manager.full_name}</Link>
@@ -99,25 +97,25 @@ class StationInformation extends React.Component {
                                             <div className='warning__statistic bg-danger'></div>
                                         </Col>
                                         <Col xs='3'>
-                                            <h4 className='mt-1'>
+                                            <h5 className='mt-1'>
                                                Cao
-                                            </h4>
+                                            </h5>
                                         </Col>
                                         <Col xs='1'>
                                             <div className='warning__statistic bg-success'></div>
                                         </Col>
                                         <Col xs='3'>
-                                            <h4 className='mt-1'>
+                                            <h5 className='mt-1'>
                                                Trung bình
-                                            </h4>
+                                            </h5>
                                         </Col>
                                         <Col xs='1'>
-                                            <div className='warning__statistic bg-primary'></div>
+                                            <div className='warning__statistic infomation__warning-low'></div>
                                         </Col>
                                         <Col xs='3'>
-                                            <h4 className='mt-1'>
+                                            <h5 className='mt-1'>
                                                Thấp
-                                            </h4>
+                                            </h5>
                                         </Col>
                                     </Row>
                                 </ul>
@@ -125,7 +123,7 @@ class StationInformation extends React.Component {
                         </Card>
                     </Tab>
                     <Tab eventKey='map' title='Trạng thái cây'>
-                        <Card className='flex-fill w-100' style={{ height: 485, width: "100%" }}>
+                        <Card className='flex-fill w-100' style={{ height: 484, width: "100%" }}>
                             <CardBody className='my-0'>
                             <h4 className='text-center  text-primary '>
                                 Nhấn vào webcam để theo dõi cây trồng!{" "}

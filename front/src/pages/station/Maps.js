@@ -56,7 +56,14 @@ class Maps extends React.Component {
                                             Phone Number: {data.manager.phone_number}
                                         </Col>
                                         <Col>
-                                            Seed: {data.seed_name}
+                                            Seed: {
+                                           
+                                           data.seed_name === "tomato" ? "Cà chua" : ""||
+                                           data.seed_name === "cucumber" ? "Dưa chuột" : ""||
+                                           data.seed_name === "pakchoi" ? "Cải ngọt" : ""||
+                                           data.seed_name === "brassica" ? "Cải chíp" : ""||
+                                           data.seed_name === "cabbage" ? "Bắp cải" : ""
+                                            }
                                         </Col>
                                         <Col>
                                             Started Plant: {moment(data.started_plant).format('DD/MM/YYYY')}

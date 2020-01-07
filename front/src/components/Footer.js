@@ -9,7 +9,7 @@ const Footer = () => (
           <p className="mb-0">
             &copy; {new Date().getFullYear()} -{" "}
             <span href="/" className="text-center">
-              Học viện Công Nghệ Bưu chính Viễn thông
+              Học viện Công nghệ Bưu chính Viễn Thông
             </span>
           </p>
         </Col>

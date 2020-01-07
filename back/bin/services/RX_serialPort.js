@@ -37,11 +37,31 @@ function dataParse(str) {
     let data = str.split("_");
     return {
         sub_id: data[0],
-        T1: data[1], T2: data[2], T3: data[3], T4: data[4],
-        H1: data[5], H2: data[6], H3: data[7], H4: data[8],
-        L1: data[9], L2: data[10], L3: data[11], L4: data[12],
-        PH1: data[13], PH2: data[14], PH3: data[15], PH4: data[16],
-        SM1: data[17], SM2: data[18], SM3: data[19], SM4: data[20],
+        T1: data[2],
+        H1: data[3],
+        L1: data[4], //Dew point
+        PH1: data[5], //PIN
+        SM1: data[1],
+        sensor_1: {
+            id: 123456,
+            RF_signal: "Tốt",
+        },
+        sensor_2: {
+            RF_signal: "Tốt",
+            id: 12566,
+            name: "Humidity",
+            EOC: 34,
+            value: data[3],
+            battery: 98
+        },
+        sensor_3: {
+            RF_signal: "Tốt",
+            id: 23456,
+            name: "Soil moisture",
+            EOC: 45,
+            value: data[1],
+            battery: 90
+        },
         time: Date.now()
     }
 }

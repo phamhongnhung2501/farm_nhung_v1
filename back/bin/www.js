@@ -5,7 +5,9 @@ const mqtt = require('mqtt');
 const config = require('../config/network');
 const logColor = require('../src/untils/logColor');
 const service = require('./services/services');
-const fakeData = require('./services/socket_data').farm;
+const RX_port = require('./services/RX_serialPort');
+const TX_port = require('./services/TX_serialPort');
+const fakeData = require('./services/socket_data');
 
 /** Get port from environment and store in Express.*/
 let port = normalizePort(process.env.PORT || config.port);
@@ -15,56 +17,40 @@ app.set('port', port);
 let server = http.createServer(app);
 const io = require('socket.io')(server);
 
-/** MQTT setup.*/
-// let client = mqtt.connect('mqtt://212.237.29.129');
-let client = mqtt.connect('mqtt://m14.cloudmqtt.com', {
-      username: 'twrtixzd',
-      password: 'sk0zWGzIUUOZ',
-      port: 11667
+/**Receive*/
+RX_port.parser.on('data', async function(data) {
+  if (data.substring(0, 9) === '+TEST: RX') {
+    let convert_data = RX_port.hex_to_ascii(data.substring(11, data.length - 1));
+    let result = RX_port.dataParse(convert_data);
+    if(result) {
+      // console.log(result.sub_id, result.SM1);
+      await service.saveData(result);
+      io.sockets.emit("farm_"+result.sub_id, result);
     }
-);
-// let client = mqtt.connect('mqtt://212.237.29.129', {
-//       username: 'nhungdaika',
-//       password: '12354',
-//       port: 1883
-//     }
-// );
-/** MQTT connection.*/
-client.on('connect', function () {
-  console.log("connected!!!");
-  client.subscribe('send_data', function (err) {
-    if (err) throw err;
-  });
-  client.subscribe('control_status',{qos:1});
-});
-/** MQTT message.*/
-client.on('message', async function (topic, message) {
-  // console.log(message);
-  let data = JSON.parse(message);
-  if(topic ==="send_data") {
-    await service.saveData(data);
-    io.sockets.emit('farm_'+data.sub_id, data);
-  }
-  if(topic ==="control_status") {
-    io.sockets.emit('controller_'+data.id, data);
   }
 });
 
 /** Socket.io connection.*/
 io.on('connection', function (socket) {
   let sub_id = socket.handshake.query.sub_id;
-  setInterval(async function(){
-    let data = fakeData(sub_id);
-    // let topic = "farm_G07";
-    let topic = "farm_"+sub_id;
-    // await service.saveData(data);
-    socket.emit(topic, data);
-    // console.log(data);
-  }, 3000);
-  // console.log(fakeData(sub_id));
+  if(sub_id !=="G04"){
+    setInterval(async function(){
+      let data = fakeData.farm(sub_id);
+      let topic = "farm_"+sub_id;
+      socket.emit(topic, data);
+    }, 3000);
+  }
+  // else{
+  //   setInterval(async function(){
+  //     let data = fakeData.farm_G04(sub_id);
+  //     let topic = "farm_"+sub_id;
+  //     socket.emit(topic, data);
+  //   }, 3000);
+  // }
   socket.on("controller", async function (data) {
-    // console.log(data)
-    client.publish("control", JSON.stringify(data))
+    let command = data.id+data.status;
+    console.log(command);
+    await TX_port.transfer(command);
   });
 });
 

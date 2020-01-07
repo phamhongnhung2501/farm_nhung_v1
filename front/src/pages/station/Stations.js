@@ -336,7 +336,7 @@ class Project extends React.Component {
                     size='md'
                     isOpen={this.state.showModal.create_project}
                     className='modal-project'>
-                    <ModalHeader>Tạo vườn ươm mới</ModalHeader>
+                    <ModalHeader>Tạo trang trại mới</ModalHeader>
                     <ModalBody>
                         <FormGroup>
                             <Row>
@@ -458,7 +458,7 @@ class Project extends React.Component {
                         <Button
                             className='station__button-create'
                             onClick={this.handleCreateProject.bind(this)}>
-                            Tạo vườn ươm mới
+                            Tạo mới
                         </Button>
                     </ModalFooter>
                 </Modal>
@@ -1246,53 +1246,48 @@ class Project extends React.Component {
                 {/*------------------------------------------------------------------  */}
 
                 <h1 className='text-center text-primary station__title m-5'>
-                    DANH SÁCH CÁC VƯỜN ƯƠM
+                    DANH SÁCH CÁC TRANG TRẠI
                 </h1>
 
                 <Container className='mt-2'>
                     <Row>
-                        <Col xs='2' className="d-none d-sm-block">
+                        <Col xs='4' sm="2" md="2" lg="2" className="float-left">
                             <Input
-                                className='width-percent-40 ml-3 station--input-search-size'
+                                className="mb-1" 
                                 id='inputSearch'
-                                placeholder='Tìm kiếm vườn ươm'
+                                placeholder='Tìm kiếm trang trại'
                                 onKeyUp={this.handleSearch.bind(this)}
                             />
                         </Col>
-
-
-                      
-                        <Col md='4' className="m-auto float-left d-inline ">
+                        <Col xs="8" md='4'>
                             {isAdmin ? (
                                 <Button
-                                    className='float-left bg-success'
+                                    className='bg-success mb-1 float-right'
                                     onClick={this.handleConfig.bind(this)}>
-                                    <FontAwesomeIcon icon={faPlus} width={3} height={2}/> Cài đặt
-                                    thông số cây trồng
+                                    <FontAwesomeIcon icon={faPlus} width={3} height={2}/>   Cài đặt thông số cây trồng
                                 </Button>
                             ) : null}
                         </Col>
-                        <Col md="2" >
+                        <Col xs="4" md="2" className="d-inline ">
                             <Input type="select" onChange={this.handleChangeType} value={this.state.type}  >
                                 <option value="list">List</option>
                                 <option value="map">Map</option>
                             </Input>
                         </Col>
-                        <Col  md="4" className='m-auto d-inline pr-4'>
+                        <Col xs="8"  md="4">
                             {isAdmin ? (
                                 <Button
-                                    className='float-right'
+                                    className='float-right bg-warning'
                                     onClick={this.handleOnClickCreateProject.bind(this)}>
-                                    <FontAwesomeIcon icon={faPlus} width={3} height={2} /> Tạo vườn
-                                    ươm mới
+                                    <FontAwesomeIcon icon={faPlus} width={3} height={2} /> Tạo trang trại mới
                                 </Button>
                             ) : null}
                         </Col>
                     </Row>
-                    <Row className='station__project'>
+                    <Row >
                         {
                              this.state.type === "list" ?
-                            <Col>
+                            <Col className="pr-0">
                                 {this.state.isLoaderAPI1 === true &&
                                 this.state.isLoaderAPI2 === true &&
                                 this.state.isLoaderAPI3 === true ? (
@@ -1323,6 +1318,7 @@ class Project extends React.Component {
                                                         started_plant={started_plant}
                                                         address={address}
                                                         seed_name={seed_name}
+                                                        className="p-0"
                                                     />
                                                 );
                                             } else {
@@ -1339,6 +1335,7 @@ class Project extends React.Component {
                                                             address={address}
                                                             seed_name={seed_name}
                                                             started_plant={started_plant}
+                                                            className="p-0"
                                                         />
                                                     );
                                                 }
@@ -1350,7 +1347,7 @@ class Project extends React.Component {
                                 )}
                             </Col>
                         :
-                        <Col>
+                        <Col className="p-0">
                             <Map lat="20.905832" long="105.708198" data={this.state.data}/>
                         </Col>
                     }

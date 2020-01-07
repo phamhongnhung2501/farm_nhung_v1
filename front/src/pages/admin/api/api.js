@@ -191,6 +191,7 @@ function deleteStation(id, callback) {
 }
 
 function modifyStation(id, data, callback) {
+    
     axios({
         url: config_api.project + "/" + id,
         method: 'PATCH',

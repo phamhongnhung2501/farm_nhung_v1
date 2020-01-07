@@ -11,13 +11,13 @@ const parser = port.pipe(new readLine({ delimiter: '\r\n' }));
 
 port.on('open', async function() {
     console.log('TX___connected!!!');
-    port.write('AT\r\n'); await delay(30);
-    port.write('AT+MODE=TEST\r\n'); await delay(30);
-    port.write('AT+TEST=RFCFG,415\r\n'); await delay(30);
+    port.write('AT\r\n'); await delay(50);
+    port.write('AT+MODE=TEST\r\n'); await delay(50);
+    port.write('AT+TEST=RFCFG,415\r\n'); await delay(50);
 });
 
 async function transfer(command){
-    port.write('AT+TEST=TXLRSTR,'+command); await delay(30);
+    port.write('AT+TEST=TXLRSTR,'+command); await delay(50);
 }
 
 parser.on('error', (err) => console.log('[TX]: ', err));

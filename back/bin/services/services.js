@@ -46,6 +46,7 @@ async function newSeed() {
 async function saveData(obj){
     try{
         await Data.create(obj)
+        // console.log("ok");
     }catch(err){
         throw err
     }

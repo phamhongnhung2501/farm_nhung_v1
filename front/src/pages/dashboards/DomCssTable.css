@@ -14,7 +14,7 @@
     color: green;
 }
 .medium_sensor{
-    color: blue;
+    color: orange;
 }
 @media only screen and (min-device-width: 350px) 
 and (max-device-width: 600px){

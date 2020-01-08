@@ -30,21 +30,16 @@ class Controlstation extends React.Component {
                 id: JSON.parse(localStorage.getItem("project")).sub_id,
                 status: "O",
             },
-            sensor1: {
-                name: null,
-                id: null,
+            relay_1: {
+                value : null,
+                battery: null,
                 RF_signal: null,
             },
-            sensor2: {
-                name: null,
-                id: null,
+            relay_2: {
+                value: null,
+                // id: null,
                 RF_signal: null,
                 battery: null,
-            },
-            sensor3: {
-                name: null,
-                id: null,
-                RF_signal: null,
             },
         };
         socket = socketIOClient(this.state.endpoint);
@@ -52,8 +47,18 @@ class Controlstation extends React.Component {
 
     send(name, status) {
         let data = {};
-        data.id = name;
-        data.status = status;
+        let relay_1 = {}
+        let relay_2 = {}
+        data.sub_id = name;
+        
+        if(status === "00" || status === "01"){
+            relay_1.value = status;
+            data.relay_1 = relay_1;
+        }
+        else if(status === "10" || status === "11"){
+            relay_2.value = status
+            data.relay_2 = relay_2;        
+        }
         socket.emit("controller", data);
     }
 
@@ -67,22 +72,14 @@ class Controlstation extends React.Component {
                 sub_id: sub_id,
             },
         });
-        socket.on("farm_" + sub_id, function(value) {
+        socket.on("controller_" + sub_id, function(value) {            
             that.setState({
-                sensor1: value.sensor_1,
-                sensor2: value.sensor_2,
-                sensor3: value.sensor_3,
+                relay_1: value.relay_1,
+                relay_2: value.relay_2,
                 time: value.time,
             });
         });
         
-        socket.on("controller_" + sub_id, function(value) {
-            that.setState({
-                RL1: value.RL1_status,
-                RL2: value.RL2_status,
-                GW_name: value.id,
-            });
-        });
         
         socket.on("error", function(err) {});
         api.getData((err, result) => {
@@ -108,7 +105,8 @@ class Controlstation extends React.Component {
 
     render() {
         let location = JSON.parse(localStorage.getItem("project")).sub_id;
-        const { sensor1, sensor2, sensor3, RL1, RL2, GW_name, time } = this.state;
+        const { relay_1, relay_2, time } = this.state;
+        
         return (
             <React.Fragment>
                 <Card>
@@ -129,39 +127,39 @@ class Controlstation extends React.Component {
                                 <Card body outline color='primary'>
                                     <h2 className='text-center'>Máy bơm</h2>
                                     <CardBody>
-                                        <InputGroup className='my-4'>
+                                        {/* <InputGroup className='my-4'>
                                             <InputGroupAddon addonType='prepend'>
                                                 <Button color='success'>
                                                     &ensp;&ensp;Tên&ensp;&ensp;
                                                 </Button>
                                             </InputGroupAddon>
-                                            {/* <Input
+                                            <Input
                                                 className='font-weight-bold'
                                                 value={sensor1.name}
                                                 disabled
-                                            /> */}
-                                        </InputGroup>
+                                            />
+                                        </InputGroup> */}
                                         <InputGroup className='my-4'>
                                             <InputGroupAddon addonType='prepend'>
                                                 <Button color='danger'>
-                                                    &ensp;&ensp;ID&ensp;&ensp;&ensp;
+                                                    &ensp;&ensp;Pin&ensp;&ensp;&ensp;
                                                 </Button>
                                             </InputGroupAddon>
-                                            {/* <Input
+                                            <Input
                                                 className='font-weight-bold'
-                                                value={sensor1.id}
+                                                value={relay_1.battery}
                                                 disabled
-                                            /> */}
+                                            />
                                         </InputGroup>
                                         <InputGroup className='my-4'>
                                             <InputGroupAddon addonType='prepend'>
                                                 <Button color='primary'>Tín hiệu</Button>
                                             </InputGroupAddon>
-                                            {/* <Input
+                                            <Input
                                                 className='font-weight-bold text-success'
-                                                value={sensor1.RF_signal}
+                                                value={relay_1.RF_signal}
                                                 disabled
-                                            /> */}
+                                            />
                                         </InputGroup>
 
                                         <Row className='mt-5'>
@@ -170,7 +168,7 @@ class Controlstation extends React.Component {
                                                 <center>
                                                 <CustomImg
                                                     key={utils.randomString()}
-                                                    src={RL2 === "11" ? WPlumOn : WPlumOff}
+                                                    src={relay_1.value === "01" ? WPlumOn : WPlumOff}
                                                     alt='button'
                                                     className='m-auto'
                                                     width="300"
@@ -183,7 +181,7 @@ class Controlstation extends React.Component {
                                                         color='danger'
                                                         size='md'
                                                         onClick={() => {
-                                                            this.send(location, "20");
+                                                            this.send(location, "00");
                                                         }}>
                                                         <div className="h3 text-white">Tắt máy</div>
                                                     </Button>
@@ -192,7 +190,7 @@ class Controlstation extends React.Component {
                                                         color='success'
                                                         size='md'
                                                         onClick={() => {
-                                                            this.send(location, "21");
+                                                            this.send(location, "01");
                                                         }}>
                                                         <div className="h3 text-white">Bật máy</div>
                                                     </Button>
@@ -206,39 +204,39 @@ class Controlstation extends React.Component {
                                 <Card body outline color='primary'>
                                     <h2 className='text-center'>Mái che</h2>
                                     <CardBody>
-                                        <InputGroup className='my-4'>
+                                        {/* <InputGroup className='my-4'>
                                             <InputGroupAddon addonType='prepend'>
                                                 <Button color='success'>
                                                     &ensp;&ensp;Tên&ensp;&ensp;
                                                 </Button>
                                             </InputGroupAddon>
-                                            {/* <Input
+                                            <Input
                                                 className='font-weight-bold'
                                                 value={sensor1.name}
                                                 disabled
-                                            /> */}
-                                        </InputGroup>
+                                            />
+                                        </InputGroup> */}
                                         <InputGroup className='my-4'>
                                             <InputGroupAddon addonType='prepend'>
                                                 <Button color='danger'>
-                                                    &ensp;&ensp;ID&ensp;&ensp;&ensp;
+                                                    &ensp;&ensp;Pin&ensp;&ensp;&ensp;
                                                 </Button>
                                             </InputGroupAddon>
-                                            {/* <Input
+                                            <Input
                                                 className='font-weight-bold'
-                                                value={sensor1.id}
+                                                value={relay_2.battery}
                                                 disabled
-                                            /> */}
+                                            />
                                         </InputGroup>
                                         <InputGroup className='my-4'>
                                             <InputGroupAddon addonType='prepend'>
                                                 <Button color='primary'>Tín hiệu</Button>
                                             </InputGroupAddon>
-                                            {/* <Input
+                                            <Input
                                                 className='font-weight-bold text-success'
-                                                value={sensor1.RF_signal}
+                                                value={relay_2.RF_signal}
                                                 disabled
-                                            /> */}
+                                            />
                                         </InputGroup>
 
                                         <Row className='mt-5'>
@@ -246,14 +244,13 @@ class Controlstation extends React.Component {
                                                 <center>
                                                     <CustomImg
                                                         key={utils.randomString()}
-                                                        src={RL1 === "01" ? CurtainOn : CurtainOff}
+                                                        src={relay_2.value === "11" ? CurtainOn : CurtainOff}
                                                         alt='button'
                                                         className='img-fluid'
                                                         width="420"
                                                     />                                                   
                                                 </center> 
 
-                                             
                                                
                                                 <div className='d-flex justify-content-center mt-3 d-inline '>
                                                     <Button

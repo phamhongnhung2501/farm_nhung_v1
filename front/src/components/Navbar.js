@@ -50,7 +50,7 @@ class NavbarComponent extends React.Component {
                 }
 
                 <Collapse navbar>
-                    <h1 className="text-center ml-auto mt-1 text-primary font-weight-bold  navbar__title d-none d-sm-block ">Phần mềm ứng dụng công nghệ IoT vào xây dựng trang trại trồng trọt nông nghiệp công nghệ cao</h1>
+                    <h1 className="text-center ml-auto mt-1 text-primary font-weight-bold  navbar__title ">Dự án sản xuất thử nghiệm: Ứng dụng công nghệ IoT vào xây dựng trang trại trồng trọt nông nghiệp công nghệ cao</h1>
                     <Nav className="ml-auto" navbar>
                         
                         <UncontrolledDropdown nav inNavbar className="mr-2">

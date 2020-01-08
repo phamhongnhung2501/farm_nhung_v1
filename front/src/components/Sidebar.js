@@ -88,7 +88,7 @@ class Sidebar extends React.Component {
                                     className="avatar img-fluid rounded-circle mr-1"
                                     alt="ptit"
                                 />
-                                <span className='align-middle ml-2'>HVCN Bưu Chính</span>
+                                <span className='align-middle ml-2'>PTIT</span>
                             </a>
 
                             <ul className='sidebar-nav'>

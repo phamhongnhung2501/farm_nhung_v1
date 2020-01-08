@@ -6,16 +6,12 @@ import {
     Input, InputGroup, InputGroupAddon,
     Button,
 } from "reactstrap";
-import { Progress } from "react-sweet-progress";
 import "react-sweet-progress/lib/style.css";
 import { CustomImg } from "../../components/CustomTag";
-import LightOff from "../../assets/img/photos/light_off.png";
-import LightOn from "../../assets/img/photos/light_on.png";
-import FantOff from "../../assets/img/photos/fan_off.png";
-import WPlumOn from "../../assets/img/photos/wplum_on.jpg";
-import CurtainOn from "../../assets/img/photos/curtain_on.jpg";
-import Soil from "../../assets/img/photos/soil.png";
-import Hum from "../../assets/img/photos/hum.png";
+import WPlumOn from "../../assets/img/photos/wplum_on.png";
+import WPlumOff from "../../assets/img/photos/wplum_off.jpg";
+import CurtainOff from "../../assets/img/photos/curtain_off.png";
+import CurtainOn from "../../assets/img/photos/curtain_on.png";
 import Notification from "../../components/Notification";
 import moment from 'moment';
 
@@ -174,10 +170,10 @@ class Controlstation extends React.Component {
                                                 <center>
                                                 <CustomImg
                                                     key={utils.randomString()}
-                                                    src={RL2 === "11" ? WPlumOn : FantOff}
+                                                    src={RL2 === "11" ? WPlumOn : WPlumOff}
                                                     alt='button'
                                                     className='m-auto'
-                                                    width="217"
+                                                    width="300"
                                                 />
                                                 </center>
 
@@ -250,10 +246,10 @@ class Controlstation extends React.Component {
                                                 <center>
                                                     <CustomImg
                                                         key={utils.randomString()}
-                                                        src={RL1 === "01" ? CurtainOn : LightOff}
+                                                        src={RL1 === "01" ? CurtainOn : CurtainOff}
                                                         alt='button'
                                                         className='img-fluid'
-                                                        width="322"
+                                                        width="420"
                                                     />                                                   
                                                 </center> 
 

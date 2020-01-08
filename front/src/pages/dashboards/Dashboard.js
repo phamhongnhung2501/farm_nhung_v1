@@ -7,6 +7,7 @@ import Statistics from "./Statistics";
 import StationInformation from "./StationInformation";
 import moment from "moment";
 import Notification from "../../components/Notification";
+import ReactLoading from "react-loading";
 import "./Tables.css";
 const config_socket = require("../../config/config").config_socket;
 const utils = require("../../utils/utils");
@@ -118,6 +119,9 @@ class Crypto extends React.Component {
                 }
         });
     }
+    componentWillMount(){
+
+    }
     componentDidMount() {
         const that = this;
         const { endpoint } = this.state;
@@ -130,7 +134,11 @@ class Crypto extends React.Component {
         });
             socket.on("farm_" + sub_id, function(value) {                
                     if(that.state.socket === true){
-                    that.setState({ data: value, data_charts: [...that.state.data_charts, value] });
+                    that.setState({ 
+                        data: value, 
+                        data_charts: [...that.state.data_charts, value],
+                        time: value.time
+                    });
                     var length = that.state.data_charts.length;
                     if (length >= 11) {
                         that.state.data_charts.shift();
@@ -147,23 +155,63 @@ class Crypto extends React.Component {
             });
             socket.on("error", function(err) {});
             this.setState({ info: utils.getStationInfo(), isLoaded: true });
+            api.getData((err, result) => {
+                if (err) {
+                    Notification(
+                        "error",
+                        "Error",
+                        err.data === undefined ? err : err.data._error_message,
+                    );
+                } else {
+                    if(result.length > 0){
+                        that.setState({
+                            time: result[0].time,
+                        });
+                    }
+                
+                }
+            });
+            
     }
 
     render() {
-        console.log(this.state.info);
+        const {time} = this.state;
         return !this.state.isLoaded ? (
-            <p className='text-center'>Loading...</p>
+            <ReactLoading className="m-auto" type='bars' color='black' />
         ) : (
             <Container fluid className='p-0'>
+                 <h4 className='text-center font-weight-bold'>Thời gian cập nhập:  {moment(time).format("DD/MM/YYYY h:mm:ss a")} </h4>
+                <div id='map' className="mb-2" style={{height:"100px"}}>
+                    <a
+                        className='weatherwidget-io'
+                        href='https://forecast7.com/en/21d00105d82/hanoi/'
+                        data-label_1='HÀ NỘI'
+                        data-icons='Climacons Animated'
+                        data-theme='original'>
+                        HÀ NỘI
+                    </a>
+                    
+                    {(
+                        function(d, s, id) {
+                        var js,
+                            fjs = d.getElementsByTagName(s)[0];
+                        if (!d.getElementById(id)) {
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = "https://weatherwidget.io/js/widget.min.js";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }
+                    })(document, "script", "weatherwidget-io-js")}
+                    
+        
+                </div>
+               
                 <Row>
                     <Col xs="12" sm="12" lg='8'  md="12" xl='8' className='d-flex '>
                         <Statistics
                             info={this.state.info}
                             data={this.state.data}
-
-                            // -----------------------------
-                            // showT={this.showT}
-                            // -----------------------------
+                            time={this.state.time}
                         />
                     </Col>
                     <Col xs="12" sm="12" md="12" lg='4' xl='4'>

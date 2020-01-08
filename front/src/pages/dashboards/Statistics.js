@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Card, CardBody, CardHeader, Row, Media } from "reactstrap";
+import { Col, Card, CardBody, CardHeader, Row, Media, UncontrolledPopover, PopoverHeader, PopoverBody } from "reactstrap";
 import { Slack, TrendingUp, Zap } from "react-feather";
 import './Db.css';
 import './DomCssTable.css';
@@ -72,6 +72,41 @@ class Statistics extends React.Component {
   render() {
     return (
       <div className="w-100">
+         <Row>
+          <Col>
+            <Card className="flex-fill ">
+              <CardHeader className=" border border-primary px-2 !important">
+              <h3 className="text-center mr-3">Trạng thái cảm biến: </h3>
+              <Row>
+                  <Col xs='1'>
+                      <div className='warning__statistic bg-danger'></div>
+                  </Col>
+                  <Col xs='3'>
+                      <h5 className='mt-1'>
+                          Cao
+                      </h5>
+                  </Col>
+                  <Col xs='1'>
+                      <div className='warning__statistic bg-success'></div>
+                  </Col>
+                  <Col xs='3'>
+                      <h5 className='mt-1'>
+                          Trung bình
+                      </h5>
+                  </Col>
+                  <Col xs='1'>
+                      <div className='warning__statistic infomation__warning-low'></div>
+                  </Col>
+                  <Col xs='3'>
+                      <h5 className='mt-1'>
+                          Thấp
+                      </h5>
+                  </Col>
+              </Row>
+              </CardHeader>
+            </Card>
+          </Col>
+        </Row>
         <Row>
           <Col sm="3">
             <Card className="flex-fill">
@@ -122,7 +157,7 @@ class Statistics extends React.Component {
                 <Media>
                   <div className="d-inline-block mr-1">
                     <h4 className="font-weight-light ">
-                      <Slack className="feather-md mb-1 mr-1" color={this.props.data.PH1 === undefined ? "#7c7c80" : "green"} />Pin 1
+                      <Slack className="feather-md mb-1 mr-1" color={this.props.data.PH1 === undefined ? "#7c7c80" : "green"} />PH 1
                     </h4>
                   </div>
                   <Media body>
@@ -132,7 +167,7 @@ class Statistics extends React.Component {
                 <Media>
                   <Media className="d-inline-block mr-1">
                     <h4 className="font-weight-light ">
-                      <Slack className="feather-md mb-1 mr-1" color={this.props.data.PH2 === undefined ? "#7c7c80" : "green"}  />Pin 2
+                      <Slack className="feather-md mb-1 mr-1" color={this.props.data.PH2 === undefined ? "#7c7c80" : "green"}  />PH 2
                     </h4>
                   </Media>
                   <Media body>
@@ -216,8 +251,8 @@ class Statistics extends React.Component {
             </Card>
           </Col>
         </Row>
+
         <Row>
-          
           <Col>
             <Card className="flex-fill ">
               <CardHeader className=" border border-primary px-2 !important">
@@ -230,252 +265,371 @@ class Statistics extends React.Component {
               <CardBody className=" border border-primary">
                <Row>
                  <Col xs="6" sm="6" md="3">
-                  <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM1
-                         === undefined ? "#7c7c80" : "green"}  />
-                        SM1
-                      </h4>
-                    </div>
+                  <Media>              
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM1 === undefined ? "#7c7c80" : "green"}  id="SM1" />
+                          SM1
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM1" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM1)}>{this.props.data.SM1}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM2
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM2
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM2 === undefined ? "#7c7c80" : "green"} id="SM2" />
+                          SM2
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM2" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM2)}>{this.props.data.SM2}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM3
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM3
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM3 === undefined ? "#7c7c80" : "green"} id="SM3"/>
+                          SM3
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM3" trigger="hover" style={{width:"150px"}}>
+                          <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                          <PopoverBody>
+                            <h5>Tín hiệu truyền:</h5>
+                            <h5>Dung lượng pin:</h5>
+                          </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM3)}>{this.props.data.SM3}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM4
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM4
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM4 === undefined ? "#7c7c80" : "green"} id="SM4"/>
+                          SM4
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM4" trigger="hover" style={{width:"150px"}}>
+                          <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                          <PopoverBody>
+                            <h5>Tín hiệu truyền:</h5>
+                            <h5>Dung lượng pin:</h5>
+                          </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM4)}>{this.props.data.SM4}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM5
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM5
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM5 === undefined ? "#7c7c80" : "green"} id="SM5"/>
+                          SM5
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM5" trigger="hover" style={{width:"150px"}}>
+                          <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                          <PopoverBody>
+                            <h5>Tín hiệu truyền:</h5>
+                            <h5>Dung lượng pin:</h5>
+                          </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM5)}>{this.props.data.SM5}</h4>
                     </Media>
                   </Media>
-                
                  </Col>
                  <Col xs="6" sm="6" md="3">
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM6
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM6
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM6 === undefined ? "#7c7c80" : "green"} id="SM6"/>
+                          SM6
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM6" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM6)}>{this.props.data.SM6}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM7
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM7
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM7 === undefined ? "#7c7c80" : "green"} id="SM7"/>
+                          SM7
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM7" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM7)}>{this.props.data.SM7}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM8
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM8
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM8 === undefined ? "#7c7c80" : "green"} id="SM8"/>
+                          SM8
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM8" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM8)}>{this.props.data.SM8}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM9
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM9
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM9 === undefined ? "#7c7c80" : "green"} id="SM9"/>
+                          SM9
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM9" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM9)}>{this.props.data.SM9}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM10
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM10
-                      </h4>
-                    </div>
                     <Media body>
-                    <h4 className={this.ConvertSM(this.props.data.SM10)}>{this.props.data.SM10}</h4>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM10 === undefined ? "#7c7c80" : "green"} id="SM10"/>
+                          SM10
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM10" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
+                      <h4 className={this.ConvertSM(this.props.data.SM10)}>{this.props.data.SM10}</h4>
                     </Media>
                   </Media>
                 
                  </Col>
                  <Col xs="6" sm="6" md="3">
-                  <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM11
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM11
-                      </h4>
-                    </div>
+                 <Media>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM11 === undefined ? "#7c7c80" : "green"} id="SM11"/>
+                          SM11
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM11" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM11)}>{this.props.data.SM11}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM12
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM12
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM12 === undefined ? "#7c7c80" : "green"} id="SM12"/>
+                          SM12
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM12" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM12)}>{this.props.data.SM12}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM13
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM13
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM13 === undefined ? "#7c7c80" : "green"} id="SM13"/>
+                          SM13
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM13" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM13)}>{this.props.data.SM13}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM14
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM14
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM14 === undefined ? "#7c7c80" : "green"} id="SM14"/>
+                          SM14
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM14" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM14)}>{this.props.data.SM14}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM15
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM15
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM15 === undefined ? "#7c7c80" : "green"} id="SM15"/>
+                          SM15
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM15" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM15)}>{this.props.data.SM15}</h4>
                     </Media>
                   </Media>
                 
                  </Col>
                  <Col xs="6" sm="6" md="3">
-                  <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM16
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM16
-                      </h4>
-                    </div>
+                 <Media>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM16 === undefined ? "#7c7c80" : "green"} id="SM16"/>
+                          SM16
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM16" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM16)}>{this.props.data.SM16}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM17
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM17
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM17 === undefined ? "#7c7c80" : "green"} id="SM17"/>
+                          SM17
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM17" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM17)}>{this.props.data.SM17}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM18
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM18
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM18 === undefined ? "#7c7c80" : "green"} id="SM18"/>
+                          SM18
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM18" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM18)}>{this.props.data.SM18}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM19
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM19
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM19 === undefined ? "#7c7c80" : "green"} id="SM19"/>
+                          SM19
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM19" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM19)}>{this.props.data.SM19}</h4>
                     </Media>
                   </Media>
                   <Media>
-                    <div className="d-inline-block mr-1">
-                      <h4 className="font-weight-light 1">
-                        <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM20
-                         === undefined ? "#7c7c80" : "green"} />
-                        SM20
-                      </h4>
-                    </div>
                     <Media body>
+                      <div className="d-inline-block mr-1">
+                        <h4 className="font-weight-light 1">
+                          <Slack className="feather-md  mb-1 mr-1" color={this.props.data.SM20 === undefined ? "#7c7c80" : "green"} id="SM20"/>
+                          SM20
+                        </h4>
+                      </div>
+                      <UncontrolledPopover placement="left" target="SM20" trigger="hover" style={{width:"150px"}}>
+                        <PopoverHeader>Thông tin cảm biến</PopoverHeader>
+                        <PopoverBody>
+                          <h5>Tín hiệu truyền:</h5>
+                          <h5>Dung lượng pin:</h5>
+                        </PopoverBody>
+                      </UncontrolledPopover>
                       <h4 className={this.ConvertSM(this.props.data.SM20)}>{this.props.data.SM20}</h4>
                     </Media>
                   </Media>
@@ -485,6 +639,7 @@ class Statistics extends React.Component {
             </Card>
           </Col>
         </Row>
+        
       </div>
     );
   }

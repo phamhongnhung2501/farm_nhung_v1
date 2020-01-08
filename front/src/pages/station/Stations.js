@@ -57,7 +57,7 @@ class Project extends React.Component {
                 stage_1: {},
                 stage_2: {},
                 stage_3: {},
-                stage_4: {},
+                // stage_4: {},
             },
             showModal: {
                 create_project: false,
@@ -73,7 +73,7 @@ class Project extends React.Component {
                 stage_1: {},
                 stage_2: {},
                 stage_3: {},
-                stage_4: {},
+                // stage_4: {},
                 started_plant: Date.now(),
             },
             listGateWay: [],
@@ -166,7 +166,7 @@ class Project extends React.Component {
             });
         } else if (obj === "stage_2") temp.stage_2[key] = event.target.value;
         else if (obj === "stage_3") temp.stage_3[key] = event.target.value;
-        else if (obj === "stage_4") temp.stage_4[key] = event.target.value;
+        // else if (obj === "stage_4") temp.stage_4[key] = event.target.value;
         else temp[event.target.name] = event.target.value;
         this.setState({ temp: temp });
     }
@@ -183,7 +183,7 @@ class Project extends React.Component {
         if (obj === "stage_1") temp.stage_1[key] = event.target.value;
         else if (obj === "stage_2") temp.stage_2[key] = event.target.value;
         else if (obj === "stage_3") temp.stage_3[key] = event.target.value;
-        else if (obj === "stage_4") temp.stage_4[key] = event.target.value;
+        // else if (obj === "stage_4") temp.stage_4[key] = event.target.value;
         else if (obj === "seed") temp.seed[key] = event.target.value;
         else temp[event.target.name] = event.target.value;
         this.setState({ temp: temp });
@@ -498,7 +498,7 @@ class Project extends React.Component {
                         <Row>
                             <Col xs='12' className='mt-3'>
                                 <Tabs defaultActiveKey='g1'>
-                                    <Tab eventKey='g1' title='Ươm hạt '>
+                                    <Tab eventKey='g1' title='Cây con'>
                                         <Card
                                             className='flex-fill w-100'
                                             style={{ height: 370, width: "100%" }}>
@@ -677,7 +677,7 @@ class Project extends React.Component {
                                             </CardBody>
                                         </Card>
                                     </Tab>
-                                    <Tab eventKey='g2' title='Ra hoa'>
+                                    <Tab eventKey='g2' title='Cây trưởng thành'>
                                         <Card className='flex-fill w-100'>
                                             <CardBody className='my-0'>
                                                 <Row>
@@ -854,7 +854,7 @@ class Project extends React.Component {
                                             </CardBody>
                                         </Card>
                                     </Tab>
-                                    <Tab eventKey='g3' title='Phát triển'>
+                                    <Tab eventKey='g3' title='Thu hoạch'>
                                         <Card
                                             className='flex-fill w-100'
                                             style={{ height: 370, width: "100%" }}>
@@ -1033,185 +1033,7 @@ class Project extends React.Component {
                                             </CardBody>
                                         </Card>
                                     </Tab>
-                                    <Tab eventKey='g4' title='Thu hoạch'>
-                                        <Card
-                                            className='flex-fill w-100'
-                                            style={{ height: 370, width: "100%" }}>
-                                            <CardBody className='my-0'>
-                                                <Row>
-                                                    <Col xs='4'>Tổng số ngày :</Col>
-                                                    <Col
-                                                        xs='8'
-                                                        className='text-center station__stage-date'>
-                                                        <Input
-                                                            type='number'
-                                                            name='stage_4.stage_days'
-                                                            placeholder='Tổng số ngày'
-                                                            value={
-                                                                this.state.dataConfig.stage_4
-                                                                    .stage_days
-                                                            }
-                                                            onChange={this.handleChange}
-                                                            autoComplete='off'
-                                                        />
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col xs='4' className='mt-4'>
-                                                        Nhiệt độ :
-                                                    </Col>
-                                                    <Col xs='4' className='mt-4 pr-1'>
-                                                        <Input
-                                                            type='number'
-                                                            name='stage_4.min_temp'
-                                                            placeholder='nhỏ nhất'
-                                                            value={
-                                                                this.state.dataConfig.stage_4
-                                                                    .min_temp
-                                                            }
-                                                            onChange={this.handleChange}
-                                                            autoComplete='off'
-                                                        />
-                                                    </Col>
-                                                    <Col xs='4' className='mt-4'>
-                                                        <Input
-                                                            type='number'
-                                                            name='stage_4.max_temp'
-                                                            placeholder='lớn nhất'
-                                                            value={
-                                                                this.state.dataConfig.stage_4
-                                                                    .max_temp
-                                                            }
-                                                            onChange={this.handleChange}
-                                                            autoComplete='off'
-                                                        />
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col xs='4' className='mt-4'>
-                                                        Độ ẩm không khí :
-                                                    </Col>
-                                                    <Col xs='4' className='mt-4 pr-1'>
-                                                        <Input
-                                                            type='number'
-                                                            name='stage_4.min_hum'
-                                                            placeholder='nhỏ nhất'
-                                                            value={
-                                                                this.state.dataConfig.stage_4
-                                                                    .min_hum
-                                                            }
-                                                            onChange={this.handleChange}
-                                                            autoComplete='off'
-                                                        />
-                                                    </Col>
-                                                    <Col xs='4' className='mt-4'>
-                                                        <Input
-                                                            type='number'
-                                                            name='stage_4.max_hum'
-                                                            placeholder='lớn nhất'
-                                                            value={
-                                                                this.state.dataConfig.stage_4
-                                                                    .max_hum
-                                                            }
-                                                            onChange={this.handleChange}
-                                                            autoComplete='off'
-                                                        />
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col xs='4' className='mt-4'>
-                                                        Độ ẩm đất :
-                                                    </Col>
-                                                    <Col xs='4' className='mt-4 pr-1'>
-                                                        <Input
-                                                            type='number'
-                                                            name='stage_4.min_soil_moisture'
-                                                            placeholder='nhỏ nhất'
-                                                            value={
-                                                                this.state.dataConfig.stage_4
-                                                                    .min_soil_moisture
-                                                            }
-                                                            onChange={this.handleChange}
-                                                            autoComplete='off'
-                                                        />
-                                                    </Col>
-                                                    <Col xs='4' className='mt-4'>
-                                                        <Input
-                                                            type='number'
-                                                            name='stage_4.max_soil_moisture'
-                                                            placeholder='lớn nhất'
-                                                            value={
-                                                                this.state.dataConfig.stage_4
-                                                                    .max_soil_moisture
-                                                            }
-                                                            onChange={this.handleChange}
-                                                            autoComplete='off'
-                                                        />
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col xs='4' className='mt-4'>
-                                                        Ánh sáng :
-                                                    </Col>
-                                                    <Col xs='4' className='mt-4 pr-1'>
-                                                        <Input
-                                                            type='number'
-                                                            name='stage_4.min_light'
-                                                            placeholder='nhỏ nhất'
-                                                            value={
-                                                                this.state.dataConfig.stage_4
-                                                                    .min_light
-                                                            }
-                                                            onChange={this.handleChange}
-                                                            autoComplete='off'
-                                                        />
-                                                    </Col>
-                                                    <Col xs='4' className='mt-4'>
-                                                        <Input
-                                                            type='number'
-                                                            name='stage_4.stage_1max_light'
-                                                            placeholder='lớn nhất'
-                                                            value={
-                                                                this.state.dataConfig.stage_4
-                                                                    .max_light
-                                                            }
-                                                            onChange={this.handleChange}
-                                                            autoComplete='off'
-                                                        />
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col xs='4' className='mt-4'>
-                                                        PH :
-                                                    </Col>
-                                                    <Col xs='4' className='mt-4 pr-1'>
-                                                        <Input
-                                                            type='number'
-                                                            name='stage_4.min_PH'
-                                                            placeholder='nhỏ nhất'
-                                                            value={
-                                                                this.state.dataConfig.stage_4.min_PH
-                                                            }
-                                                            onChange={this.handleChange}
-                                                            autoComplete='off'
-                                                        />
-                                                    </Col>
-                                                    <Col xs='4' className='mt-4'>
-                                                        <Input
-                                                            type='number'
-                                                            name='stage_4.max_PH'
-                                                            placeholder='lớn nhất'
-                                                            value={
-                                                                this.state.dataConfig.stage_4.max_PH
-                                                            }
-                                                            onChange={this.handleChange}
-                                                            autoComplete='off'
-                                                        />
-                                                    </Col>
-                                                </Row>
-                                            </CardBody>
-                                        </Card>
-                                    </Tab>
+                                   
                                 </Tabs>
                             </Col>
                         </Row>

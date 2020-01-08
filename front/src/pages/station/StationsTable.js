@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import { Card, CardTitle, Table, Badge, UncontrolledTooltip, Container } from "reactstrap";
 import { CustomImg } from "../../components/CustomTag";
-import Moment from 'react-moment';
+import moment from 'moment';
 const api = require("./api/api");
 const none = "none";
 
@@ -28,6 +28,8 @@ class TableProject extends React.Component {
         });
     }
     render() {
+        console.log(this.state.data.started_plant);
+        
         return (
             <Container fluid className="table-project mt-4">
                 <Card id={"table-project-" + this.state.data._id} className="table-project__card border-bottom-0">
@@ -58,9 +60,7 @@ class TableProject extends React.Component {
                                 }
                                 </h6>
                                 <h6 className="text-muted table-project__h6 mt-1">Gateway: {this.state.data.sub_id} </h6>
-                                <h6 className="text-muted table-project__h6">Ngày bắt đầu gieo trồng:  <Moment format="YYYY/MM/DD">
-                                                                                                            {this.state.data.started_plant}
-                                                                                                        </Moment>                                                                                                          
+                                <h6 className="text-muted table-project__h6">Ngày bắt đầu gieo trồng: { moment(this.state.data.started_plant).format('YYYY-MM-DD')}                                                                                                                                                                                                             
                               </h6>
                                 <UncontrolledTooltip placement={"bottom"} target={"tooltip-project-" + this.state.data.id}>
                                     Nhấn vào để biết thêm chi tiết

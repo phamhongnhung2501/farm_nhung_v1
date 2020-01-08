@@ -7,43 +7,14 @@ import {
     Input, Label, Row, 
     Modal, ModalHeader, ModalBody, ModalFooter, 
 } from "reactstrap";
-// import "./General.css";
 import Notification from "../../components/Notification";
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import Moment from 'react-moment';
+import moment from 'moment';
 import logo from "../../assets/img/logo/logo.png";
+import ReactLoading from "react-loading";
+import { formatDate } from "fullcalendar";
 const api = require("./api/api");
 const utils = require("../../utils/utils");
 
-class DateTimePicker extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleDayChange = this.handleDayChange.bind(this);
-        this.state = {
-          selectedDay: this.props.data.started_plant,
-        };
-      }
-    
-      handleDayChange(day) {
-        this.setState({ selectedDay: day });
-        const data = {
-            started_plant: day,
-
-        }
-        this.props.handleChangeDate(data)
-      }
-    
-      render() {
-        const { selectedDay } = this.state;        
-        return (
-          <div>
-            {selectedDay && <p>Day: {selectedDay.toLocaleDateString()}</p>}
-            {!selectedDay && <p>Thay đổi ngày bắt đầu</p>}
-            <DayPickerInput value={this.props.data.started_plant} onDayChange={this.handleDayChange} />
-          </div>
-        );
-      }
-}
 class General extends React.Component {
     constructor(props) {
         super(props);
@@ -84,17 +55,8 @@ class General extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.toggle = this.toggle.bind(this)
         this.toggleInputPass = this.toggleInputPass.bind(this)
-        this.handleChangeDate = this.handleChangeDate.bind(this)
     }
 
-    handleChangeDate(data){
-        this.setState(prevState => ({
-            data: {
-                ...prevState.data,
-                started_plant: data.started_plant
-            }
-        }))
-    }
 
     handleChange(event) {
         let data  = Object.assign({}, this.state.data, this.state.data.stage_1, this.state.data.stage_2, this.state.data.stage_3, this.state.data.stage_4);
@@ -174,8 +136,9 @@ class General extends React.Component {
     }
 
     render() {
+        let date = moment(this.state.data.started_plant).format('YYYY-MM-DD');
         return (
-            !(this.state.isLoaded1 && this.state.isLoaded2)  ? null :
+            !(this.state.isLoaded1 && this.state.isLoaded2)  ? <ReactLoading className="m-auto" type='bars' color='black' /> :
             <Card className="admin__general__card">
                 <CardBody>
                     <Row>
@@ -292,12 +255,14 @@ class General extends React.Component {
                             </Row>
                             <Row>
                                 <Col xs="6">
+                                    <Label for="name_of_address">Ngày bắt đầu</Label>
                                     <FormGroup>
-                                        <DateTimePicker 
-                                            className="ml-1"
-                                            data = {this.state.data.started_plant}
-                                            handleChangeDate = {this.handleChangeDate}
-                                        />
+                                        <Input
+                                                type="date" name="started_plant"
+                                                defaultValue={date}
+                                                onChange={this.handleChange}
+                                                autoComplete="off"
+                                            />
                                     </FormGroup>
                                 </Col>
                                

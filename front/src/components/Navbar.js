@@ -28,44 +28,9 @@ import vnFlag from "../assets/img/flags/vn.png";
 
 import empty_avatar from "../assets/img/avatars/empty_avatar.png";
 import "./Navbar.css"
-// important, default, login, request
-
-
-class NavbarDropdown extends React.Component {
-
-    render() {
-        const { children, count, showBadge, header, icon } = this.props;
-        return (
-            <UncontrolledDropdown nav inNavbar className="mr-2">
-                <DropdownToggle nav className="nav-icon dropdown-toggle">
-                    <div className="position-relative">
-                        <Bell id="navbar-notificatipn" className="align-middle" />
-                        <UncontrolledTooltip placement="bottom" target="navbar-notificatipn">
-                            Notifications
-                        </UncontrolledTooltip>
-                        {showBadge ? <span className="indicator">{count}</span> : null}
-                    </div>
-                </DropdownToggle>
-                <DropdownMenu right className="dropdown-menu-lg py-0">
-                    <div className="dropdown-menu-header position-relative">
-                        {count} {header}
-                    </div>
-                    <ListGroup>{children}</ListGroup>
-                </DropdownMenu>
-            </UncontrolledDropdown>
-        );
-    }
-}
 
 
 class NavbarComponent extends React.Component {
-    changeLanguage(lang) {
-        this.setState({
-            lang: lang
-        });
-        let flag = lang === 'en' ? usFlag : vnFlag;
-        $("#language_selected").attr("src", flag)
-    }
 
     replacePage(page) {
         window.location.replace(page)
@@ -85,7 +50,7 @@ class NavbarComponent extends React.Component {
                 }
 
                 <Collapse navbar>
-                    <h1 className="text-center ml-auto mt-1 text-danger navbar__title d-none d-sm-block ">Phần mềm ứng dụng công nghệ IoT vào xây dựng trang trại trồng trọt nông nghiệp công nghệ cao</h1>
+                    <h1 className="text-center ml-auto mt-1 text-primary font-weight-bold  navbar__title d-none d-sm-block ">Phần mềm ứng dụng công nghệ IoT vào xây dựng trang trại trồng trọt nông nghiệp công nghệ cao</h1>
                     <Nav className="ml-auto" navbar>
                         
                         <UncontrolledDropdown nav inNavbar className="mr-2">

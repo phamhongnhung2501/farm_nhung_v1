@@ -86,7 +86,7 @@ function Routes() {
         <Router>
             <ScrollToTop>
                 <Switch>
-                    <Route exact path="/" render={() => (<Redirect to="/auth/sign-in" />)} />
+                    <Route exact path="/" render={() => (<Redirect to="/dashboard" />)} />
                     {PublicRoute(LandingLayout, landingRoutes)}
                     <Route
                         path="/logout"

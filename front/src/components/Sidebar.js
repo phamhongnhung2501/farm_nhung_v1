@@ -99,16 +99,20 @@ class Sidebar extends React.Component {
                                         icon={Cpu}
                                     />
                                     <SidebarItem
-                                        name='Theo dõi độ ẩm đất'
-                                        to='/TrackSoilMoisture'
+                                        name='Điều khiển thiết bị'
+                                        to='/controlStation'
+                                        icon={ToggleLeft}
+                                    />
+                                    <SidebarItem
+                                        name='Camera'
+                                        to='/Camera'
                                         icon={Eye}
                                     />
                                     <SidebarItem
-                                        name='Điều khiển thiết bị'
-                                        to='/ControlStation'
-                                        icon={ToggleLeft}
+                                        name='Thông số cây trồng'
+                                        to='/config'
+                                        icon={Eye}
                                     />
-                                   
                                     {isAdmin ? (
                                         <SidebarItem
                                             name='Quản trị viên'

@@ -15,12 +15,23 @@ import {
     NavLink,
     TabContent,
     TabPane,
+    CustomInput
 } from "reactstrap";
 import { Tabs, Tab } from "react-bootstrap";
-import Moment from "react-moment";
-import "moment-timezone";
-import { Briefcase, Home, MapPin, Bell, User } from "react-feather";
+import TreeIcon from "../../assets/img/photos/tree_icon.png";
+import DateIcon from "../../assets/img/photos/date.png";
+import GreenHouse from "../../assets/img/photos/greenhouse.png";
+import Clock from "../../assets/img/photos/clock.png";
+import UserIcon from "../../assets/img/photos/user.png";
+import Temperature from "../../assets/img/photos/temperature.png";
+import Light from "../../assets/img/photos/light.png";
+import SM from "../../assets/img/photos/sm.png";
+import PH from "../../assets/img/photos/p.png";
+import Hum from "../../assets/img/photos/h.png";
+import { CustomImg } from "../../components/CustomTag";
+import moment from 'moment';
 import "./Db.css";
+import { Briefcase, Home, MapPin, Bell, User } from "react-feather";
 import Map from "./Map";
 class StationInformation extends React.Component {
     constructor(props) {
@@ -41,24 +52,57 @@ class StationInformation extends React.Component {
     }
 
     render() {
-        const { data } = this.props;        
+        const { data } = this.props;   
+        console.log(data.stage.name);
+             
         return (
             <React.Fragment>
                 <Tabs defaultActiveKey='info'>
                     <Tab eventKey='info' title='Thông tin vườn ươm'>
-                        <Card className='flex-fill w-100' style={{ height: 484, width: "100%" }}>
+                        <Card className='flex-fill w-100' style={{ height: 607, width: "100%" }}>
                             <CardBody className='my-0'>
-                                <Col className='mb-3'>
+                                <Col className='mb-3 p-0'>
                                     <Map lat="20.905832" long="105.708198" data={data}/>
                                 </Col>
                                 <h3 className='text-center'>{data.name}</h3>
-                                <Row>
-                                    <Col className='mb-3'>
-                                        <Home width={20} height={20} className='mr-1' />Gateway:{" "}
+                                <ul className='list-unstyled mb-0'>
+                                    <li className='mb-3 h4'>
+                                        <CustomImg  
+                                            src={Clock}
+                                            width={50}
+                                            height={50}
+                                            className="mr-2"
+                                        />
+                                        Giai đoạn:{" "}
+                                        <Link to='#'>
+                                            {   
+                                                data.stage.name === "germination stage" ? "Gieo hạt" : ""||
+                                            
+                                                data.stage.name === "development 1 stage" ? "Ra hoa" : ""||
+                                            
+                                                data.stage.name === "development 2 stage" ? "Phát triển" : ""||
+                                            
+                                                data.stage.name === "harvest stage" ? "Thu hoạch" : ""  
+                                            }
+                                        </Link>
+                                    </li>       
+                                    <li className='mb-3 h4'>
+                                        <CustomImg  
+                                            src={GreenHouse}
+                                            width={50}
+                                            height={50}
+                                            className="mr-2"
+                                        /> Gateway:{" "}
                                         <Link to='#'>{data.sub_id}</Link>
-                                    </Col>
-                                    <Col className='mb-3'>
-                                        <Home width={20} height={20} className='mr-1' /> Hạt giống:{" "}
+                                    </li>
+                                    <li className='mb-3 h4'>
+                                        <CustomImg  
+                                            src={TreeIcon}
+                                            width={50}
+                                            height={50}
+                                            className="mr-2"
+                                        />
+                                         Hạt giống:{" "}
                                         <Link to='#'>
                                             {
                                             data.seed_name === "tomato" ? "Cà chua" : ""||
@@ -68,138 +112,103 @@ class StationInformation extends React.Component {
                                             data.seed_name === "cabbage" ? "Bắp cải" : ""
                                             }
                                         </Link>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col className='mb-3'>
-                                        <Briefcase width={20} height={20} className='mr-1' />
-                                            Ngày gieo hạt:{" "}
+                                    </li>
+                                    <li className='mb-3 h4'>
+                                        <CustomImg  
+                                            src={DateIcon}
+                                            width={50}
+                                            height={50}
+                                            className="mr-2"
+                                        />
+                                        Ngày gieo hạt:{" "}
                                         <Link to='#'>
-                                            <Moment format='DD/MM/YYYY'>
-                                                {data.started_plant}
-                                            </Moment>
+                                            { moment(data.started_plant).format('DD-MM-YYYY')}
                                         </Link>
-                                    </Col>
-                                    {/* <Col className='mb-3'>
-                                        <MapPin width={20} height={20} className='mr-1' />
-                                        Địa chỉ: <Link to='#'>{data.address}</Link>
-                                    </Col> */}
-                                    <Col className='mb-3'>
-                                        <User width={20} height={20} className='mr-1' />
+                                    </li>
+                                    <li className='mb-3 h4'>
+                                        <CustomImg  
+                                            src={UserIcon}
+                                            width={50}
+                                            height={50}
+                                            className="mr-2"
+                                        />
                                         Người quản lí: <Link to='#'>{data.manager.full_name}</Link>
-                                    </Col>
-                                </Row>
-                                
-                                <ul className='list-unstyled mb-0 mt-2'>
-                                    <h3 className="text-center">Trạng thái cảm biến</h3>
-                                    <Row className='mb-0 mt-3'>
-                                        <Col xs='1'>
-                                            <div className='warning__statistic bg-danger'></div>
-                                        </Col>
-                                        <Col xs='3'>
-                                            <h5 className='mt-1'>
-                                               Cao
-                                            </h5>
-                                        </Col>
-                                        <Col xs='1'>
-                                            <div className='warning__statistic bg-success'></div>
-                                        </Col>
-                                        <Col xs='3'>
-                                            <h5 className='mt-1'>
-                                               Trung bình
-                                            </h5>
-                                        </Col>
-                                        <Col xs='1'>
-                                            <div className='warning__statistic infomation__warning-low'></div>
-                                        </Col>
-                                        <Col xs='3'>
-                                            <h5 className='mt-1'>
-                                               Thấp
-                                            </h5>
-                                        </Col>
-                                    </Row>
+                                    </li>        
                                 </ul>
                             </CardBody>
                         </Card>
                     </Tab>
                     <Tab eventKey='map' title='Trạng thái cây'>
-                        <Card className='flex-fill w-100' style={{ height: 484, width: "100%" }}>
-                            <CardBody className='my-0'>
-                            <h4 className='text-center  text-primary '>
-                                Nhấn vào webcam để theo dõi cây trồng!{" "}
-                            </h4>
+                        <Card className='flex-fill w-100' style={{ height:  607, width: "100%" }}>
+                        <CardBody className='my-0'>
+                                <ul className='list-unstyled mb-0'>
+                                        <h3 className="text-center h3 text-primary mb-4">
+                                            {   
+                                                data.stage.name === "germination stage" ? "Gieo hạt" : ""||
+                                            
+                                                data.stage.name === "development 1 stage" ? "Ra hoa" : ""||
+                                            
+                                                data.stage.name === "development 2 stage" ? "Phát triển" : ""||
+                                            
+                                                data.stage.name === "harvest stage" ? "Thu hoạch" : ""  
+                                            }
+                                        </h3>  
+                                    <li className='mb-3 h4'>
+                                        <CustomImg  
+                                            src={Temperature}
+                                            width={50}
+                                            height={50}
+                                            className="mr-2"
+                                        />
+                                        Nhiệt độ: <Link to='#'>{data.stage.min_temp}</Link>{" "}
+                                        {" < T < "} <Link to='#'>{data.stage.max_temp}</Link>
+                                    </li>
 
-                            <div className='d-flex justify-content-center mt-2'>
-                                <a
-                                    href='http://lophocvui.ddns.net/doc/page/login.asp?_1574329102388'
-                                    target='_blank'>
-                                    <img
-                                        className='camera__camera'
-                                        src='https://www.a4tech.com/alanUpload/colorImg/img/201803/0203101147364114.jpg'
-                                        alt='Card image cap'
-                                        width="400px"
-                                    />
-                                </a>
-                            </div>
-                                <Row>
-                                    <Col className="mt-3">
-                                        <h5>
-                                            <Home width={20} height={20} className='mr-1' />Giai đoạn:{" "}
-                                            <Link to='#'>
-                                                {   
-                                                        data.stage.name === "germination stage" ? "Gieo hạt" : ""||
-                                                    
-                                                        data.stage.name === "development 1 stage" ? "Ra hoa" : ""||
-                                                    
-                                                        data.stage.name === "development 2 stage" ? "Phát triển" : ""||
-                                                    
-                                                        data.stage.name === "harvest stage" ? "Thu hoạch" : ""  
-                                                }
-                                            </Link>
-                                        </h5>
-                                    </Col>
-                                    <Col className="mt-3">
-                                        <h5>
-                                            <Briefcase width={20} height={20} className='mr-1' />
-                                            Nhiệt độ: <Link to='#'>{data.stage.min_temp}</Link>{" "}
-                                            {" < T < "} <Link to='#'>{data.stage.max_temp}</Link>
-                                        </h5>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col className="mt-3">
-                                        <h5>
-                                            <Briefcase width={20} height={20} className='mr-1' />
-                                            Ánh sáng: <Link to='#'>{data.stage.min_light}</Link>
-                                            {" < L < "} <Link to='#'>{data.stage.max_light}</Link>
-                                        </h5>
-                                    </Col>
-                                    <Col className="mt-3"> 
-                                        <h5>
-                                            <Briefcase width={20} height={20} className='mr-1' />
-                                            PH: <Link to='#'>{data.stage.min_PH}</Link> {" < PH < "}{" "}
-                                            <Link to='#'>{data.stage.max_PH}</Link>
-                                        </h5>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col className="mt-3">
-                                        <h5>
-                                            <Briefcase width={20} height={20} className='mr-1' />
-                                                Độ ẩm đất:{" "}
-                                            <Link to='#'>{data.stage.min_soil_moisture}</Link>{" "}
-                                            {" < SM < "}{" "}
-                                            <Link to='#'>{data.stage.max_soil_moisture}</Link>
-                                        </h5> 
-                                    </Col>
-                                    <Col className="mt-3">
-                                        <Briefcase width={20} height={20} className='mr-1' />
-                                            Độ ẩm không khí: <Link to='#'>
-                                                {data.stage.min_hum}
+                                    <li className='mb-3 h4'>
+                                        <CustomImg  
+                                            src={Light}
+                                            width={50}
+                                            height={50}
+                                            className="mr-2"
+                                        />
+                                        Ánh sáng: <Link to='#'>{data.stage.min_light}</Link>
+                                        {" < L < "} <Link to='#'>{data.stage.max_light}</Link>
+                                    </li>
+                                    <li className='mb-3 h4'>
+                                        <CustomImg  
+                                            src={PH}
+                                            width={50}
+                                            height={50}
+                                            className="mr-2"
+                                        />
+                                        PH: <Link to='#'>{data.stage.min_PH}</Link> {" < PH < "}{" "}
+                                        <Link to='#'>{data.stage.max_PH}</Link>
+                                    </li>
+                                    <li className='mb-3 h4'>
+                                        <CustomImg  
+                                            src={SM}
+                                            width={50}
+                                            height={50}
+                                            className="mr-2"
+                                        />
+                                        Độ ẩm đất:{" "}
+                                        <Link to='#'>{data.stage.min_soil_moisture}</Link>{" "}
+                                        {" < SM < "}{" "}
+                                        <Link to='#'>{data.stage.max_soil_moisture}</Link>
+                                    </li>
+                                    <li className='mb-3 h4'>
+                                        <CustomImg  
+                                            src={Hum}
+                                            width={50}
+                                            height={50}
+                                            className="mr-2"
+                                        />
+                                        Độ ẩm không khí: <Link to='#'>
+                                            {data.stage.min_hum}
                                         </Link>{" "}
                                         {" < H < "} <Link to='#'>{data.stage.max_hum}</Link>
-                                    </Col>
-                                </Row>
+                                    </li>
+                                </ul>
                             </CardBody>
                         </Card>
                     </Tab>

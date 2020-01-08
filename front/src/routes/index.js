@@ -18,14 +18,11 @@ import Stations from "../pages/station/Stations"
 
 // Pages
 import Profile from "../pages/profile/Profile";
-import TrackSoilMoisture from "../pages/TrackSoilMoisture/TrackSoilMoisture";
 import Admin from "../pages/admin/Admin";
-import ControlStation from "../pages/ControlStation/ControlStation";
-import Config from "../pages/Config/Config";
+import ControlStation from "../pages/controlStation/ControlStation";
+import Config from "../pages/config/Config";
 
-
-// import Root from "../pages/root/root";
-// import Term from "../pages/term/Term";
+import Camera from "../pages/camera/Camera";
 import Dashboard from "../pages/dashboards/Dashboard";
 import VerifyAccount from "../pages/auth/VerifyAccount";
 const Default = async(() => import("../pages/station/Stations"));
@@ -43,14 +40,14 @@ const dashboardWithoutSidebarRoutes = {
             component: Dashboard
         },
         {
-            path: "/TrackSoilMoisture",
-            name: "TrackSoilMoisture",
-            component: TrackSoilMoisture
+            path: "/controlStation",
+            name: "controlStation",
+            component: ControlStation
         },
         {
-            path: "/ControlStation",
-            name: "ControlStation",
-            component: ControlStation
+            path: "/camera",
+            name: "Camera",
+            component: Camera
         },
         {
             path: "/Config",
